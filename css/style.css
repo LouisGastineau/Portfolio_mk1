@@ -558,6 +558,84 @@ footer a:hover {
 }
 
 /* ===========================
+   Social Links
+   =========================== */
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+}
+
+.social-links-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* ===========================
+   Download Button
+   =========================== */
+
+.download-cv-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.download-cv-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+}
+
+/* ===========================
+   FAQ Section
+   =========================== */
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 2rem;
+}
+
+.faq-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.faq-item p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ===========================
    Animations
    =========================== */
 
@@ -569,6 +647,28 @@ footer a:hover {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100px);
     }
 }
 

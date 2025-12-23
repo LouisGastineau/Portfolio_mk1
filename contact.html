@@ -127,72 +127,24 @@
             <div class="card" style="margin-top: 3rem; text-align: center; padding: 3rem 2rem;">
                 <h2 style="margin-bottom: 2rem;">Suivez-moi sur les réseaux sociaux</h2>
                 
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                    <a href="https://github.com" target="_blank" class="social-link" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 0.5rem;
-                        padding: 1rem 1.5rem;
-                        background: var(--glass-bg);
-                        border: 1px solid var(--glass-border);
-                        border-radius: 0.5rem;
-                        color: var(--text-primary);
-                        text-decoration: none;
-                        transition: all 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--primary-color)'" 
-                       onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--glass-border)'">
-                        <span style="font-size: 1.5rem;">💻</span>
+                <div class="social-links-container">
+                    <a href="https://github.com" target="_blank" class="social-link">
+                        <span>💻</span>
                         <span>GitHub</span>
                     </a>
 
-                    <a href="https://linkedin.com" target="_blank" class="social-link" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 0.5rem;
-                        padding: 1rem 1.5rem;
-                        background: var(--glass-bg);
-                        border: 1px solid var(--glass-border);
-                        border-radius: 0.5rem;
-                        color: var(--text-primary);
-                        text-decoration: none;
-                        transition: all 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--primary-color)'" 
-                       onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--glass-border)'">
-                        <span style="font-size: 1.5rem;">💼</span>
+                    <a href="https://linkedin.com" target="_blank" class="social-link">
+                        <span>💼</span>
                         <span>LinkedIn</span>
                     </a>
 
-                    <a href="https://twitter.com" target="_blank" class="social-link" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 0.5rem;
-                        padding: 1rem 1.5rem;
-                        background: var(--glass-bg);
-                        border: 1px solid var(--glass-border);
-                        border-radius: 0.5rem;
-                        color: var(--text-primary);
-                        text-decoration: none;
-                        transition: all 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--primary-color)'" 
-                       onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--glass-border)'">
-                        <span style="font-size: 1.5rem;">🐦</span>
+                    <a href="https://twitter.com" target="_blank" class="social-link">
+                        <span>🐦</span>
                         <span>Twitter</span>
                     </a>
 
-                    <a href="https://instagram.com" target="_blank" class="social-link" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 0.5rem;
-                        padding: 1rem 1.5rem;
-                        background: var(--glass-bg);
-                        border: 1px solid var(--glass-border);
-                        border-radius: 0.5rem;
-                        color: var(--text-primary);
-                        text-decoration: none;
-                        transition: all 0.3s ease;
-                    " onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--primary-color)'" 
-                       onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--glass-border)'">
-                        <span style="font-size: 1.5rem;">📷</span>
+                    <a href="https://instagram.com" target="_blank" class="social-link">
+                        <span>📷</span>
                         <span>Instagram</span>
                     </a>
                 </div>
@@ -202,43 +154,35 @@
             <div class="card" style="margin-top: 3rem; margin-bottom: 3rem;">
                 <h2 style="text-align: center; margin-bottom: 2rem;">Questions fréquentes</h2>
                 
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">
-                            Quel est votre délai de réponse ?
-                        </h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <h3>Quel est votre délai de réponse ?</h3>
+                        <p>
                             Je m'efforce de répondre à tous les messages dans les 24-48 heures. 
                             Pour les demandes urgentes, n'hésitez pas à le mentionner dans votre message.
                         </p>
                     </div>
 
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">
-                            Êtes-vous disponible pour des projets freelance ?
-                        </h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">
+                    <div class="faq-item">
+                        <h3>Êtes-vous disponible pour des projets freelance ?</h3>
+                        <p>
                             Oui, je suis ouvert aux opportunités de freelance. N'hésitez pas à me contacter 
                             pour discuter de votre projet et de sa faisabilité.
                         </p>
                     </div>
 
-                    <div style="margin-bottom: 2rem;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">
-                            Quels types de projets acceptez-vous ?
-                        </h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">
+                    <div class="faq-item">
+                        <h3>Quels types de projets acceptez-vous ?</h3>
+                        <p>
                             Je travaille principalement sur des projets de développement web (sites web, 
                             applications web, API), mais je suis toujours intéressé par des défis innovants 
                             dans d'autres domaines du développement.
                         </p>
                     </div>
 
-                    <div>
-                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">
-                            Proposez-vous des consultations gratuites ?
-                        </h3>
-                        <p style="color: var(--text-secondary); line-height: 1.6;">
+                    <div class="faq-item">
+                        <h3>Proposez-vous des consultations gratuites ?</h3>
+                        <p>
                             Oui, je propose une première consultation gratuite de 30 minutes pour discuter 
                             de votre projet et voir comment je peux vous aider.
                         </p>

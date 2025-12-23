@@ -1,8 +1,23 @@
 // ===========================
-// Mouse-follow light effect
+// Initialize all functionality when DOM is loaded
 // ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all components
+    initMouseLight();
+    initMobileMenu();
+    initActiveNavLink();
+    initContactForm();
+    initSmoothScroll();
+    initScrollAnimations();
+    initDownloadCVButton();
+});
+
+// ===========================
+// Mouse-follow light effect
+// ===========================
+
+function initMouseLight() {
     // Create mouse light element
     const mouseLight = document.createElement('div');
     mouseLight.id = 'mouse-light';
@@ -43,62 +58,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     animate();
-});
+}
 
 // ===========================
 // Mobile Navigation Toggle
 // ===========================
 
-document.addEventListener('DOMContentLoaded', () => {
+function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Animate menu icon
+    if (!menuToggle) return;
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        // Animate menu icon
+        const spans = menuToggle.querySelectorAll('span');
+        if (navLinks.classList.contains('active')) {
+            spans[0].style.transform = 'rotate(45deg) translateY(8px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
+        } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('active');
             const spans = menuToggle.querySelectorAll('span');
-            if (navLinks.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translateY(8px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('active');
-                const spans = menuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
         });
-
-        // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const spans = menuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            });
-        });
-    }
-});
+    });
+}
 
 // ===========================
 // Active Navigation Link
 // ===========================
 
-document.addEventListener('DOMContentLoaded', () => {
+function initActiveNavLink() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-links a');
     
@@ -108,44 +123,75 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.add('active');
         }
     });
-});
+}
 
 // ===========================
 // Contact Form Handler
 // ===========================
 
-document.addEventListener('DOMContentLoaded', () => {
+function initContactForm() {
     const contactForm = document.getElementById('contact-form');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
-            
-            // In a real application, you would send this data to a server
-            console.log('Form submitted:', formData);
-            
-            // Show success message
-            alert('Merci pour votre message ! Je vous répondrai bientôt.');
-            
-            // Reset form
-            contactForm.reset();
-        });
-    }
-});
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+        
+        // In a real application, you would send this data to a server
+        console.log('Form submitted:', formData);
+        
+        // Show success message with better UX
+        showNotification('Merci pour votre message ! Je vous répondrai bientôt.', 'success');
+        
+        // Reset form
+        contactForm.reset();
+    });
+}
+
+// ===========================
+// Notification System
+// ===========================
+
+function showNotification(message, type = 'success') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        padding: 1rem 2rem;
+        background: ${type === 'success' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'linear-gradient(135deg, #ef4444, #dc2626)'};
+        color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    // Add to document
+    document.body.appendChild(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
 
 // ===========================
 // Smooth Scroll for Anchor Links
 // ===========================
 
-document.addEventListener('DOMContentLoaded', () => {
+function initSmoothScroll() {
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     
     anchorLinks.forEach(link => {
@@ -168,13 +214,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
+}
 
 // ===========================
 // Scroll Animation Observer
 // ===========================
 
-document.addEventListener('DOMContentLoaded', () => {
+function initScrollAnimations() {
     // Intersection Observer for scroll animations
     const observerOptions = {
         threshold: 0.1,
@@ -198,4 +244,19 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
-});
+}
+
+// ===========================
+// Download CV Button Handler
+// ===========================
+
+function initDownloadCVButton() {
+    const downloadBtn = document.getElementById('download-cv-btn');
+    
+    if (!downloadBtn) return;
+
+    downloadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showNotification('Fonctionnalité de téléchargement à implémenter', 'success');
+    });
+}
