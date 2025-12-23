@@ -164,12 +164,29 @@ function showNotification(message, type = 'success') {
     // Create notification element
     const notification = document.createElement('div');
     notification.textContent = message;
+    
+    // Set background color based on type
+    let backgroundColor;
+    switch(type) {
+        case 'success':
+            backgroundColor = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
+            break;
+        case 'error':
+            backgroundColor = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            break;
+        case 'info':
+            backgroundColor = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+            break;
+        default:
+            backgroundColor = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
+    }
+    
     notification.style.cssText = `
         position: fixed;
         top: 100px;
         right: 20px;
         padding: 1rem 2rem;
-        background: ${type === 'success' ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'linear-gradient(135deg, #ef4444, #dc2626)'};
+        background: ${backgroundColor};
         color: white;
         border-radius: 0.5rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -257,6 +274,6 @@ function initDownloadCVButton() {
 
     downloadBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        showNotification('Fonctionnalité de téléchargement à implémenter', 'success');
+        showNotification('Fonctionnalité de téléchargement à implémenter', 'info');
     });
 }
