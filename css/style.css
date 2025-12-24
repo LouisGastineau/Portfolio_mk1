@@ -199,6 +199,189 @@ main {
 }
 
 /* ===========================
+   Split Hero Section
+   =========================== */
+
+.hero-split {
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    animation: fadeInLeft 0.8s ease;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.hero-image {
+    animation: fadeInRight 0.8s ease;
+}
+
+/* VS Code Window Mockup */
+.vscode-window {
+    background: #1e1e1e;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vscode-window:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 70px rgba(99, 102, 241, 0.3);
+}
+
+.vscode-header {
+    background: #323233;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.vscode-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.vscode-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.vscode-btn.red {
+    background: #ff5f56;
+}
+
+.vscode-btn.yellow {
+    background: #ffbd2e;
+}
+
+.vscode-btn.green {
+    background: #27c93f;
+}
+
+.vscode-title {
+    color: #cccccc;
+    font-size: 0.9rem;
+}
+
+.vscode-content {
+    padding: 1.5rem;
+    background: #1e1e1e;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    overflow-x: auto;
+}
+
+.vscode-content pre {
+    margin: 0;
+    color: #d4d4d4;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.vscode-content code {
+    display: block;
+}
+
+/* Code Syntax Highlighting */
+.code-keyword {
+    color: #569cd6;
+    font-weight: 500;
+}
+
+.code-variable {
+    color: #9cdcfe;
+}
+
+.code-property {
+    color: #9cdcfe;
+}
+
+.code-string {
+    color: #ce9178;
+}
+
+.code-function {
+    color: #dcdcaa;
+}
+
+/* ===========================
+   Alternating Sections
+   =========================== */
+
+.section-alternate {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 4rem;
+    max-width: 1400px;
+    margin: 4rem auto;
+}
+
+.section-alternate.left .section-content {
+    order: 1;
+}
+
+.section-alternate.left .section-visual {
+    order: 2;
+}
+
+.section-alternate.right .section-visual {
+    order: 1;
+}
+
+.section-alternate.right .section-content {
+    order: 2;
+}
+
+.section-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.skills-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ===========================
    Glass Cards
    =========================== */
 
@@ -650,6 +833,28 @@ footer a:hover {
     }
 }
 
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -700,6 +905,48 @@ footer a:hover {
         right: 0;
     }
 
+    /* Split Hero - Mobile */
+    .hero-split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 6rem 2rem 2rem;
+        min-height: auto;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .vscode-content pre {
+        font-size: 0.8rem;
+    }
+
+    /* Alternating Sections - Mobile */
+    .section-alternate {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .section-alternate.left .section-content,
+    .section-alternate.right .section-content {
+        order: 1;
+    }
+
+    .section-alternate.left .section-visual,
+    .section-alternate.right .section-visual {
+        order: 2;
+    }
+
+    .section-content h2 {
+        font-size: 2rem;
+    }
+
+    /* Original styles */
     .hero h1 {
         font-size: 2.5rem;
     }
@@ -728,6 +975,26 @@ footer a:hover {
 }
 
 @media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .vscode-window {
+        font-size: 0.85rem;
+    }
+
+    .vscode-content pre {
+        font-size: 0.75rem;
+    }
+
+    .section-alternate {
+        padding: 1.5rem;
+    }
+
     .hero h1 {
         font-size: 2rem;
     }
