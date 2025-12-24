@@ -74,6 +74,8 @@ function initBackgroundStars() {
     }
 
     const numStars = 15; // Number of stars
+    const STAR_SPEED = 0.3; // Speed multiplier for star movement
+    const STAR_SIZE = 3; // Size of stars in pixels
     const stars = [];
     let animationFrameId = null;
 
@@ -89,8 +91,8 @@ function initBackgroundStars() {
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
             // Random velocity for smooth movement
-            vx: (Math.random() - 0.5) * 0.3, // Slower, more subtle movement
-            vy: (Math.random() - 0.5) * 0.3,
+            vx: (Math.random() - 0.5) * STAR_SPEED,
+            vy: (Math.random() - 0.5) * STAR_SPEED,
             // Random animation delay for twinkling
             delay: Math.random() * 3
         };
@@ -109,14 +111,14 @@ function initBackgroundStars() {
             star.x += star.vx;
             star.y += star.vy;
 
-            // Bounce off edges with some padding
-            if (star.x <= 0 || star.x >= window.innerWidth) {
+            // Bounce off edges, accounting for star size to prevent visual artifacts
+            if (star.x <= 0 || star.x >= window.innerWidth - STAR_SIZE) {
                 star.vx *= -1;
-                star.x = Math.max(0, Math.min(window.innerWidth, star.x));
+                star.x = Math.max(0, Math.min(window.innerWidth - STAR_SIZE, star.x));
             }
-            if (star.y <= 0 || star.y >= window.innerHeight) {
+            if (star.y <= 0 || star.y >= window.innerHeight - STAR_SIZE) {
                 star.vy *= -1;
-                star.y = Math.max(0, Math.min(window.innerHeight, star.y));
+                star.y = Math.max(0, Math.min(window.innerHeight - STAR_SIZE, star.y));
             }
 
             // Apply new position
@@ -146,9 +148,12 @@ function initBackgroundStars() {
     // Handle window resize
     window.addEventListener('resize', () => {
         stars.forEach(star => {
-            // Keep stars within new bounds
-            star.x = Math.min(star.x, window.innerWidth);
-            star.y = Math.min(star.y, window.innerHeight);
+            // Keep stars within new bounds, accounting for star size
+            star.x = Math.min(star.x, window.innerWidth - STAR_SIZE);
+            star.y = Math.min(star.y, window.innerHeight - STAR_SIZE);
+            // Update DOM positions immediately
+            star.element.style.left = `${star.x}px`;
+            star.element.style.top = `${star.y}px`;
         });
     });
 }
