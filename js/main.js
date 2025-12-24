@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initScrollAnimations();
     initDownloadCVButton();
+    initUwuMode();
 });
 
 // ===========================
@@ -276,4 +277,81 @@ function initDownloadCVButton() {
         e.preventDefault();
         showNotification('Fonctionnalité de téléchargement à implémenter', 'info');
     });
+}
+
+// ===========================
+// UwU Mode Easter Egg
+// ===========================
+
+let uwuModeActive = false;
+const originalTexts = new Map();
+
+function initUwuMode() {
+    const uwuTrigger = document.getElementById('uwu-trigger');
+    
+    if (!uwuTrigger) return;
+
+    uwuTrigger.addEventListener('click', () => {
+        uwuModeActive = !uwuModeActive;
+        
+        if (uwuModeActive) {
+            activateUwuMode();
+            showNotification('UwU mode activé ! >w<', 'info');
+        } else {
+            deactivateUwuMode();
+            showNotification('Mode normal restauré', 'info');
+        }
+    });
+}
+
+function activateUwuMode() {
+    // Get all text nodes in the document
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {
+            acceptNode: function(node) {
+                // Skip script and style tags
+                if (node.parentElement.tagName === 'SCRIPT' || 
+                    node.parentElement.tagName === 'STYLE') {
+                    return NodeFilter.FILTER_REJECT;
+                }
+                return NodeFilter.FILTER_ACCEPT;
+            }
+        }
+    );
+
+    const textNodes = [];
+    let currentNode;
+    
+    while (currentNode = walker.nextNode()) {
+        if (currentNode.nodeValue.trim().length > 0) {
+            textNodes.push(currentNode);
+        }
+    }
+
+    // Replace 'r' and 'R' with 'w' and 'W'
+    textNodes.forEach(node => {
+        const originalText = node.nodeValue;
+        originalTexts.set(node, originalText);
+        
+        const uwuText = originalText
+            .replace(/r/g, 'w')
+            .replace(/R/g, 'W')
+            .replace(/l/g, 'w')
+            .replace(/L/g, 'W');
+        
+        node.nodeValue = uwuText;
+    });
+}
+
+function deactivateUwuMode() {
+    // Restore original texts
+    originalTexts.forEach((originalText, node) => {
+        if (node.parentElement) {
+            node.nodeValue = originalText;
+        }
+    });
+    
+    originalTexts.clear();
 }

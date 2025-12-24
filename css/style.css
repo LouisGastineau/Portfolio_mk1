@@ -226,6 +226,8 @@ main {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1.2;
+    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4)) 
+            drop-shadow(0 0 40px rgba(236, 72, 153, 0.3));
 }
 
 .hero-content p {
@@ -368,6 +370,8 @@ main {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4)) 
+            drop-shadow(0 0 40px rgba(236, 72, 153, 0.3));
 }
 
 .section-content h3 {
@@ -409,9 +413,10 @@ main {
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.01);
     border-color: rgba(99, 102, 241, 0.3);
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2),
+                0 0 30px rgba(99, 102, 241, 0.1);
 }
 
 .card:hover::before {
@@ -703,6 +708,8 @@ main {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4)) 
+            drop-shadow(0 0 40px rgba(236, 72, 153, 0.3));
 }
 
 .section-header p {
@@ -738,6 +745,16 @@ footer a {
 
 footer a:hover {
     color: var(--accent-color);
+}
+
+/* UwU Mode Easter Egg */
+#uwu-trigger {
+    transition: opacity 0.3s ease;
+    user-select: none;
+}
+
+#uwu-trigger:hover {
+    opacity: 0.3 !important;
 }
 
 /* ===========================
