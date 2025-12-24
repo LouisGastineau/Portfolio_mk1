@@ -324,7 +324,7 @@ function activateUwuMode() {
     const textNodes = [];
     let currentNode;
     
-    while (currentNode = walker.nextNode()) {
+    while ((currentNode = walker.nextNode()) !== null) {
         if (currentNode.nodeValue.trim().length > 0) {
             textNodes.push(currentNode);
         }

@@ -1030,3 +1030,32 @@ footer a:hover {
         font-size: 0.9rem;
     }
 }
+
+/* ===========================
+   Accessibility - Reduced Motion
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        /* Remove scale for motion sensitivity */
+    }
+
+    .vscode-window:hover {
+        transform: none;
+        /* Keep shadow but remove movement */
+    }
+
+    #mouse-light {
+        display: none;
+        /* Disable mouse-follow effect */
+    }
+}
