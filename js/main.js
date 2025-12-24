@@ -68,8 +68,14 @@ function initMouseLight() {
 // ===========================
 
 function initBackgroundStars() {
+    // Check if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return; // Don't create stars if reduced motion is preferred
+    }
+
     const numStars = 15; // Number of stars
     const stars = [];
+    let animationFrameId = null;
 
     // Create stars
     for (let i = 0; i < numStars; i++) {
@@ -118,10 +124,24 @@ function initBackgroundStars() {
             star.element.style.top = `${star.y}px`;
         });
 
-        requestAnimationFrame(animateStars);
+        animationFrameId = requestAnimationFrame(animateStars);
     }
 
     animateStars();
+
+    // Pause animation when page is hidden to save resources
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        } else {
+            if (animationFrameId === null) {
+                animateStars();
+            }
+        }
+    });
 
     // Handle window resize
     window.addEventListener('resize', () => {
