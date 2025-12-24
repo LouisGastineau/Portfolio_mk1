@@ -56,6 +56,31 @@ body::before {
     opacity: 0;
 }
 
+/* Flying stars background effect */
+.background-star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(99, 102, 241, 0.4) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 0 4px rgba(99, 102, 241, 0.6),
+                0 0 8px rgba(139, 92, 246, 0.4);
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
 /* ===========================
    Navigation
    =========================== */
@@ -1103,5 +1128,10 @@ footer a:hover {
     #mouse-light {
         display: none;
         /* Disable mouse-follow effect */
+    }
+
+    .background-star {
+        display: none;
+        /* Disable flying stars effect */
     }
 }

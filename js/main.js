@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
     initMouseLight();
+    initBackgroundStars();
     initMobileMenu();
     initActiveNavLink();
     initContactForm();
@@ -60,6 +61,76 @@ function initMouseLight() {
     }
 
     animate();
+}
+
+// ===========================
+// Background flying stars effect
+// ===========================
+
+function initBackgroundStars() {
+    const numStars = 15; // Number of stars
+    const stars = [];
+
+    // Create stars
+    for (let i = 0; i < numStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'background-star';
+        document.body.appendChild(star);
+
+        // Random initial position
+        const starData = {
+            element: star,
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            // Random velocity for smooth movement
+            vx: (Math.random() - 0.5) * 0.3, // Slower, more subtle movement
+            vy: (Math.random() - 0.5) * 0.3,
+            // Random animation delay for twinkling
+            delay: Math.random() * 3
+        };
+
+        star.style.left = `${starData.x}px`;
+        star.style.top = `${starData.y}px`;
+        star.style.animationDelay = `${starData.delay}s`;
+
+        stars.push(starData);
+    }
+
+    // Animate stars
+    function animateStars() {
+        stars.forEach(star => {
+            // Update position
+            star.x += star.vx;
+            star.y += star.vy;
+
+            // Bounce off edges with some padding
+            if (star.x <= 0 || star.x >= window.innerWidth) {
+                star.vx *= -1;
+                star.x = Math.max(0, Math.min(window.innerWidth, star.x));
+            }
+            if (star.y <= 0 || star.y >= window.innerHeight) {
+                star.vy *= -1;
+                star.y = Math.max(0, Math.min(window.innerHeight, star.y));
+            }
+
+            // Apply new position
+            star.element.style.left = `${star.x}px`;
+            star.element.style.top = `${star.y}px`;
+        });
+
+        requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        stars.forEach(star => {
+            // Keep stars within new bounds
+            star.x = Math.min(star.x, window.innerWidth);
+            star.y = Math.min(star.y, window.innerHeight);
+        });
+    });
 }
 
 // ===========================
