@@ -73,9 +73,9 @@ function initBackgroundStars() {
         return; // Don't create stars if reduced motion is preferred
     }
 
-    const numStars = 15; // Number of stars
-    const STAR_SPEED = 0.3; // Speed multiplier for star movement
-    const STAR_SIZE = 3; // Size of stars in pixels
+    const numStars = 20; // Number of stars
+    const STAR_SPEED = 0.5; // Speed multiplier for star movement
+    const STAR_SIZE = 5; // Size of stars in pixels
     const stars = [];
     let animationFrameId = null;
 
