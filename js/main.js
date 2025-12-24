@@ -85,11 +85,11 @@ function initBackgroundStars() {
         star.className = 'background-star';
         document.body.appendChild(star);
 
-        // Random initial position
+        // Random initial position (accounting for star size to prevent edge cutoff)
         const starData = {
             element: star,
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * (window.innerWidth - STAR_SIZE),
+            y: Math.random() * (window.innerHeight - STAR_SIZE),
             // Random velocity for smooth movement
             vx: (Math.random() - 0.5) * STAR_SPEED,
             vy: (Math.random() - 0.5) * STAR_SPEED,
@@ -145,16 +145,20 @@ function initBackgroundStars() {
         }
     });
 
-    // Handle window resize
+    // Handle window resize (debounced for performance)
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        stars.forEach(star => {
-            // Keep stars within new bounds, accounting for star size
-            star.x = Math.min(star.x, window.innerWidth - STAR_SIZE);
-            star.y = Math.min(star.y, window.innerHeight - STAR_SIZE);
-            // Update DOM positions immediately
-            star.element.style.left = `${star.x}px`;
-            star.element.style.top = `${star.y}px`;
-        });
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            stars.forEach(star => {
+                // Keep stars within new bounds, accounting for star size
+                star.x = Math.min(star.x, window.innerWidth - STAR_SIZE);
+                star.y = Math.min(star.y, window.innerHeight - STAR_SIZE);
+                // Update DOM positions immediately
+                star.element.style.left = `${star.x}px`;
+                star.element.style.top = `${star.y}px`;
+            });
+        }, 150); // Debounce resize events
     });
 }
 
