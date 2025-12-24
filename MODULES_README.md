@@ -6,10 +6,10 @@ Ce système de modules permet de créer facilement de nouvelles pages de hobbies
 
 ```
 hobbies/
-├── photographie.html (exemple complet)
-├── musique.html
-├── voyages.html
-├── sport.html
+├── jeux-video.html (exemple complet)
+├── peinture-figurines.html
+├── escalade.html
+├── jeux-societe.html
 └── [nouveau-hobby].html (à créer)
 
 css/
@@ -143,7 +143,7 @@ Pour revenir à la page hobbies principale.
 ## Comment Créer une Nouvelle Page Hobby
 
 ### Étape 1: Copier le Template
-Copiez `hobbies/photographie.html` et renommez-le (ex: `escalade.html`)
+Copiez `hobbies/jeux-video.html` et renommez-le (ex: `musique.html`)
 
 ### Étape 2: Modifier l'En-tête
 ```html
@@ -222,10 +222,10 @@ Copiez `hobbies/photographie.html` et renommez-le (ex: `escalade.html`)
 ## Exemples Complets
 
 Consultez les pages existantes pour des exemples complets:
-- `hobbies/photographie.html` - Galerie photos + vidéos
-- `hobbies/musique.html` - Vidéos + galerie équipement
-- `hobbies/voyages.html` - Galerie destinations + conseils
-- `hobbies/sport.html` - Routine + motivation
+- `hobbies/jeux-video.html` - Galerie setup + vidéos gaming
+- `hobbies/peinture-figurines.html` - Galerie créations + tutoriels
+- `hobbies/escalade.html` - Galerie ascensions + techniques
+- `hobbies/jeux-societe.html` - Galerie ludothèque + reviews
 
 ## Support
 
