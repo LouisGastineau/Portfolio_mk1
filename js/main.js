@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
     initMouseLight();
+    initBackgroundStars();
     initMobileMenu();
     initActiveNavLink();
     initContactForm();
@@ -60,6 +61,105 @@ function initMouseLight() {
     }
 
     animate();
+}
+
+// ===========================
+// Background flying stars effect
+// ===========================
+
+function initBackgroundStars() {
+    // Check if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return; // Don't create stars if reduced motion is preferred
+    }
+
+    const numStars = 15; // Number of stars
+    const STAR_SPEED = 0.3; // Speed multiplier for star movement
+    const STAR_SIZE = 3; // Size of stars in pixels
+    const stars = [];
+    let animationFrameId = null;
+
+    // Create stars
+    for (let i = 0; i < numStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'background-star';
+        document.body.appendChild(star);
+
+        // Random initial position (accounting for star size to prevent edge cutoff)
+        const starData = {
+            element: star,
+            x: Math.random() * (window.innerWidth - STAR_SIZE),
+            y: Math.random() * (window.innerHeight - STAR_SIZE),
+            // Random velocity for smooth movement
+            vx: (Math.random() - 0.5) * STAR_SPEED,
+            vy: (Math.random() - 0.5) * STAR_SPEED,
+            // Random animation delay for twinkling
+            delay: Math.random() * 3
+        };
+
+        star.style.left = `${starData.x}px`;
+        star.style.top = `${starData.y}px`;
+        star.style.animationDelay = `${starData.delay}s`;
+
+        stars.push(starData);
+    }
+
+    // Animate stars
+    function animateStars() {
+        stars.forEach(star => {
+            // Update position
+            star.x += star.vx;
+            star.y += star.vy;
+
+            // Bounce off edges, accounting for star size to prevent visual artifacts
+            if (star.x <= 0 || star.x >= window.innerWidth - STAR_SIZE) {
+                star.vx *= -1;
+                star.x = Math.max(0, Math.min(window.innerWidth - STAR_SIZE, star.x));
+            }
+            if (star.y <= 0 || star.y >= window.innerHeight - STAR_SIZE) {
+                star.vy *= -1;
+                star.y = Math.max(0, Math.min(window.innerHeight - STAR_SIZE, star.y));
+            }
+
+            // Apply new position
+            star.element.style.left = `${star.x}px`;
+            star.element.style.top = `${star.y}px`;
+        });
+
+        animationFrameId = requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+
+    // Pause animation when page is hidden to save resources
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        } else {
+            if (animationFrameId === null) {
+                animateStars();
+            }
+        }
+    });
+
+    // Handle window resize (debounced for performance)
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            stars.forEach(star => {
+                // Keep stars within new bounds, accounting for star size
+                star.x = Math.min(star.x, window.innerWidth - STAR_SIZE);
+                star.y = Math.min(star.y, window.innerHeight - STAR_SIZE);
+                // Update DOM positions immediately
+                star.element.style.left = `${star.x}px`;
+                star.element.style.top = `${star.y}px`;
+            });
+        }, 150); // Debounce resize events
+    });
 }
 
 // ===========================
