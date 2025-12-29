@@ -563,6 +563,23 @@ main {
     margin-top: 0.5rem;
 }
 
+/* Profile card specific styles */
+.profile-card {
+    margin-bottom: 3rem;
+}
+
+.profile-description {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-top: 1rem;
+}
+
+/* Skills section styles */
+.skills-category-title {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -581,6 +598,290 @@ main {
 .skill-tag:hover {
     transform: scale(1.05);
     border-color: var(--primary-color);
+}
+
+/* Skill bars for CV page */
+.skills-with-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skill-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.skill-level-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.skill-bar-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    transition: width 1s ease-out;
+    position: relative;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.skill-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Language level styles */
+.language-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.language-name {
+    margin-bottom: 0.5rem;
+}
+
+.language-level {
+    color: var(--text-secondary);
+}
+
+/* Download section styles */
+.download-section {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+/* Footer link spacing */
+.footer-links {
+    margin-top: 0.5rem;
+}
+
+/* ===========================
+   Reusable Content Styles
+   =========================== */
+
+/* Text content styles */
+.text-description {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-top: 1rem;
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Card variations */
+.card-clickable {
+    cursor: pointer;
+}
+
+.card-no-padding {
+    padding: 0;
+    overflow: hidden;
+}
+
+.card-spacing-large {
+    margin-bottom: 3rem;
+}
+
+.card-spacing {
+    margin-bottom: 1.5rem;
+}
+
+.card-cta {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.card-cta-spaced {
+    margin-top: 4rem;
+}
+
+/* Project and hobby cards */
+.project-description,
+.hobby-description {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.intro-description {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.section-spacing {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+/* Category titles */
+.category-title {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.category-title-large {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hobby card links */
+.hobby-card-link {
+    text-decoration: none;
+}
+
+.hobby-card-link:hover .card {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.hobby-link-text {
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    font-weight: 600;
+}
+
+/* Tags and badges */
+.tags-container {
+    margin-bottom: 1.5rem;
+}
+
+.skill-tag-inline {
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Quote styles */
+.quote-text {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.quote-author {
+    margin-top: 1rem;
+    color: var(--primary-color);
+}
+
+/* List styles */
+.feature-list {
+    color: var(--text-secondary);
+    line-height: 2;
+    margin-top: 1rem;
+    list-style-position: inside;
+}
+
+/* Image styles */
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 300px;
+}
+
+/* UwU easter egg trigger */
+.uwu-trigger {
+    opacity: 0.01;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+/* ===========================
+   Contact Page Styles
+   =========================== */
+
+.contact-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-detail {
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.social-section {
+    margin-top: 3rem;
+}
+
+.faq-section {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.back-button-container {
+    text-align: center;
+    margin-top: 3rem;
 }
 
 /* ===========================

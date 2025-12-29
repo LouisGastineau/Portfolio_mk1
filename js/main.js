@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initDownloadCVButton();
     initUwuMode();
     initScrollToTop();
+    initSkillBars();
 });
 
 // ===========================
@@ -606,4 +607,36 @@ function initScrollToTop() {
             behavior: 'smooth'
         });
     });
+}
+
+// ===========================
+// Skill Bars Animation
+// ===========================
+
+function initSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-bar-fill');
+    
+    if (skillBars.length === 0) return;
+
+    // Intersection Observer for animating skill bars when they come into view
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                const level = entry.target.getAttribute('data-level');
+                // Delay animation slightly for visual effect
+                setTimeout(() => {
+                    entry.target.style.width = level + '%';
+                    entry.target.classList.add('animated');
+                }, 100);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all skill bars
+    skillBars.forEach(bar => observer.observe(bar));
 }
