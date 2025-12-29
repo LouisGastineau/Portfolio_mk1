@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
+    initThemeToggle();
     initMouseLight();
     initBackgroundStars();
     initMobileMenu();
@@ -16,6 +17,164 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollToTop();
     initSkillBars();
 });
+
+// ===========================
+// Theme Toggle (Dark/Light Mode)
+// ===========================
+
+function initThemeToggle() {
+    // Get saved theme from localStorage or default to 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Create theme toggle button
+    const navContainer = document.querySelector('.nav-container');
+    if (!navContainer) return;
+    
+    // Create nav-actions wrapper if it doesn't exist
+    let navActions = navContainer.querySelector('.nav-actions');
+    if (!navActions) {
+        navActions = document.createElement('div');
+        navActions.className = 'nav-actions';
+        
+        // Find the menu toggle and insert nav-actions before it
+        const menuToggle = navContainer.querySelector('.menu-toggle');
+        if (menuToggle) {
+            navContainer.insertBefore(navActions, menuToggle);
+        } else {
+            navContainer.appendChild(navActions);
+        }
+        
+        // Move menu toggle into nav-actions if it exists
+        if (menuToggle) {
+            navActions.appendChild(menuToggle);
+        }
+    }
+    
+    // Create theme toggle button
+    const themeToggle = document.createElement('button');
+    themeToggle.className = 'theme-toggle';
+    themeToggle.setAttribute('aria-label', 'Toggle theme');
+    
+    const themeIcon = document.createElement('span');
+    themeIcon.className = 'theme-icon';
+    themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+    
+    themeToggle.appendChild(themeIcon);
+    
+    // Insert theme toggle before menu toggle
+    const menuToggle = navActions.querySelector('.menu-toggle');
+    if (menuToggle) {
+        navActions.insertBefore(themeToggle, menuToggle);
+    } else {
+        navActions.appendChild(themeToggle);
+    }
+    
+    // Initialize snowflakes if light theme
+    if (savedTheme === 'light') {
+        initSnowflakes();
+    }
+    
+    // Toggle theme on click
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update icon
+        themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        
+        // Toggle snowflakes
+        if (newTheme === 'light') {
+            initSnowflakes();
+        } else {
+            removeSnowflakes();
+        }
+    });
+}
+
+// ===========================
+// Snowflake Effect (Winter Theme)
+// ===========================
+
+let snowflakeInterval = null;
+const snowflakes = [];
+
+function initSnowflakes() {
+    // Don't create snowflakes if reduced motion is preferred
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+    
+    // Clear existing snowflakes first
+    removeSnowflakes();
+    
+    // Create snowflakes periodically
+    snowflakeInterval = setInterval(() => {
+        createSnowflake();
+    }, 300); // Create a new snowflake every 300ms
+}
+
+function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.className = 'snowflake';
+    snowflake.textContent = '❄';
+    
+    // Random horizontal position
+    const startPosition = Math.random() * window.innerWidth;
+    snowflake.style.left = startPosition + 'px';
+    
+    // Random size
+    const size = 0.5 + Math.random() * 1;
+    snowflake.style.fontSize = size + 'em';
+    
+    // Random horizontal drift (to simulate wind)
+    const drift = -50 + Math.random() * 100; // -50px to 50px drift
+    snowflake.style.setProperty('--drift', drift + 'px');
+    
+    // Random duration (5-10 seconds)
+    const duration = 5 + Math.random() * 5;
+    snowflake.style.animationDuration = duration + 's';
+    
+    // Random delay for staggered effect
+    const delay = Math.random() * 2;
+    snowflake.style.animationDelay = delay + 's';
+    
+    document.body.appendChild(snowflake);
+    snowflakes.push(snowflake);
+    
+    // Remove snowflake after animation completes
+    setTimeout(() => {
+        if (snowflake.parentElement) {
+            snowflake.remove();
+            const index = snowflakes.indexOf(snowflake);
+            if (index > -1) {
+                snowflakes.splice(index, 1);
+            }
+        }
+    }, (duration + delay) * 1000);
+}
+
+function removeSnowflakes() {
+    // Clear the interval
+    if (snowflakeInterval) {
+        clearInterval(snowflakeInterval);
+        snowflakeInterval = null;
+    }
+    
+    // Remove all existing snowflakes
+    snowflakes.forEach(snowflake => {
+        if (snowflake.parentElement) {
+            snowflake.remove();
+        }
+    });
+    snowflakes.length = 0;
+    
+    // Also remove any orphaned snowflakes
+    document.querySelectorAll('.snowflake').forEach(el => el.remove());
+}
 
 // ===========================
 // Mouse-follow light effect
@@ -191,7 +350,8 @@ function initMobileMenu() {
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        const navActions = document.querySelector('.nav-actions');
+        if (!navActions?.contains(e.target) && !navLinks.contains(e.target)) {
             navLinks.classList.remove('active');
             const spans = menuToggle.querySelectorAll('span');
             spans[0].style.transform = 'none';
