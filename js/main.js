@@ -37,15 +37,11 @@ function initThemeToggle() {
         navActions = document.createElement('div');
         navActions.className = 'nav-actions';
         
-        // Find the menu toggle and insert nav-actions before it
-        const menuToggle = navContainer.querySelector('.menu-toggle');
-        if (menuToggle) {
-            navContainer.insertBefore(navActions, menuToggle);
-        } else {
-            navContainer.appendChild(navActions);
-        }
+        // Append nav-actions at the end of nav-container (far right)
+        navContainer.appendChild(navActions);
         
         // Move menu toggle into nav-actions if it exists
+        const menuToggle = navContainer.querySelector('.menu-toggle');
         if (menuToggle) {
             navActions.appendChild(menuToggle);
         }
@@ -62,7 +58,7 @@ function initThemeToggle() {
     
     themeToggle.appendChild(themeIcon);
     
-    // Insert theme toggle before menu toggle
+    // Insert theme toggle before menu toggle (or at start if no menu toggle)
     const menuToggle = navActions.querySelector('.menu-toggle');
     if (menuToggle) {
         navActions.insertBefore(themeToggle, menuToggle);
@@ -86,13 +82,20 @@ function initThemeToggle() {
         // Update icon
         themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
         
-        // Toggle snowflakes
+        // Toggle snowflakes and stars
         if (newTheme === 'light') {
             initSnowflakes();
+            hideStars();
         } else {
             removeSnowflakes();
+            showStars();
         }
     });
+    
+    // Hide or show stars based on initial theme
+    if (savedTheme === 'light') {
+        hideStars();
+    }
 }
 
 // ===========================
@@ -326,6 +329,22 @@ function initBackgroundStars() {
                 star.element.style.top = `${star.y}px`;
             });
         }, 150); // Debounce resize events
+    });
+}
+
+// Helper function to hide stars
+function hideStars() {
+    const stars = document.querySelectorAll('.background-star');
+    stars.forEach(star => {
+        star.style.display = 'none';
+    });
+}
+
+// Helper function to show stars
+function showStars() {
+    const stars = document.querySelectorAll('.background-star');
+    stars.forEach(star => {
+        star.style.display = '';
     });
 }
 
