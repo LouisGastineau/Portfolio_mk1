@@ -28,26 +28,6 @@ function initThemeToggle() {
     document.documentElement.setAttribute('data-theme', savedTheme);
     
     // Create theme toggle button
-    const navContainer = document.querySelector('.nav-container');
-    if (!navContainer) return;
-    
-    // Create nav-actions wrapper if it doesn't exist
-    let navActions = navContainer.querySelector('.nav-actions');
-    if (!navActions) {
-        navActions = document.createElement('div');
-        navActions.className = 'nav-actions';
-        
-        // Append nav-actions at the end of nav-container (far right)
-        navContainer.appendChild(navActions);
-        
-        // Move menu toggle into nav-actions if it exists
-        const menuToggle = navContainer.querySelector('.menu-toggle');
-        if (menuToggle) {
-            navActions.appendChild(menuToggle);
-        }
-    }
-    
-    // Create theme toggle button
     const themeToggle = document.createElement('button');
     themeToggle.className = 'theme-toggle';
     themeToggle.setAttribute('aria-label', 'Toggle theme');
@@ -58,13 +38,8 @@ function initThemeToggle() {
     
     themeToggle.appendChild(themeIcon);
     
-    // Insert theme toggle before menu toggle (or at start if no menu toggle)
-    const menuToggle = navActions.querySelector('.menu-toggle');
-    if (menuToggle) {
-        navActions.insertBefore(themeToggle, menuToggle);
-    } else {
-        navActions.appendChild(themeToggle);
-    }
+    // Append theme toggle to body (will be positioned fixed at bottom left via CSS)
+    document.body.appendChild(themeToggle);
     
     // Initialize snowflakes if light theme
     if (savedTheme === 'light') {
