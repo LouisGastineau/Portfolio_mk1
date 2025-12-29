@@ -101,6 +101,7 @@ function initThemeToggle() {
 
 let snowflakeInterval = null;
 const snowflakes = [];
+const snowflakeTimeouts = [];
 
 function initSnowflakes() {
     // Don't create snowflakes if reduced motion is preferred
@@ -146,7 +147,7 @@ function createSnowflake() {
     snowflakes.push(snowflake);
     
     // Remove snowflake after animation completes
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
         if (snowflake.parentElement) {
             snowflake.remove();
             const index = snowflakes.indexOf(snowflake);
@@ -155,6 +156,8 @@ function createSnowflake() {
             }
         }
     }, (duration + delay) * 1000);
+    
+    snowflakeTimeouts.push(timeoutId);
 }
 
 function removeSnowflakes() {
@@ -163,6 +166,10 @@ function removeSnowflakes() {
         clearInterval(snowflakeInterval);
         snowflakeInterval = null;
     }
+    
+    // Clear all pending timeouts
+    snowflakeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+    snowflakeTimeouts.length = 0;
     
     // Remove all existing snowflakes
     snowflakes.forEach(snowflake => {
