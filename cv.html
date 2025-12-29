@@ -44,9 +44,9 @@
             </div>
 
             <!-- Profile Summary -->
-            <div class="card" style="margin-bottom: 3rem;">
+            <div class="card profile-card">
                 <h2>Profil</h2>
-                <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1rem;">
+                <p class="profile-description">
                     Développeur web full stack, j’aime créer des applications modernes et efficaces en utilisant JavaScript, React, Node.js et d’autres technos du web.
                     Curieux et passionné, je fais attention à la qualité du code, aux performances et aux détails qui font la différence, tout en cherchant toujours à apprendre et à innover
                 </p>
@@ -79,7 +79,7 @@
                         <h3>Bac+3 Concepteur développeur d’applications</h3>
                         <span class="date">2025 – Présent</span>
                         <p><strong>EKOD – Le Mans</strong></p>
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        <p class="profile-description">
                             Poursuite et approfondissement de mon parcours dans le développement d’applications, avec un focus sur la conception, la qualité du code et la mise en pratique en entreprise.
                         </p>
                     </div>
@@ -88,7 +88,7 @@
                         <h3>Bac+2 Développeur web et web mobile</h3>
                         <span class="date">2024 – 2025</span>
                         <p><strong>Arinfo – Le Mans</strong></p>
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                        <p class="profile-description">
                             Acquisition des fondamentaux du développement web : front-end, back-end, bases de données et intégration web.
                         </p>
                     </div>
@@ -101,33 +101,160 @@
                 <div class="card">
                     <h2>Compétences Techniques</h2>
                     
-                    <h3 style="margin-top: 1.5rem; margin-bottom: 1rem;">Langages de Programmation</h3>
-                    <div class="skills-grid">
-                        <div class="skill-tag">JavaScript</div>
-                        <div class="skill-tag">TypeScript</div>
-                        <div class="skill-tag">Python</div>
-                        <div class="skill-tag">HTML5</div>
-                        <div class="skill-tag">CSS3</div>
-                        <div class="skill-tag">SQL</div>
-                        <div class="skill-tag">PhP</div>
+                    <h3 class="skills-category-title">Langages de Programmation</h3>
+                    <div class="skills-with-levels">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="90" style="width: 0%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">TypeScript</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="85" style="width: 0%" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-level-text">Intermédiaire</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="70" style="width: 0%" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">HTML5 / CSS3</span>
+                                <span class="skill-level-text">Expert</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="95" style="width: 0%" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="80" style="width: 0%" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">PHP</span>
+                                <span class="skill-level-text">Intermédiaire</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="65" style="width: 0%" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Frameworks & Bibliothèques</h3>
-                    <div class="skills-grid">
-                        <div class="skill-tag">React</div>
-                        <div class="skill-tag">Vue.js</div>
-                        <div class="skill-tag">Node.js</div>
-                        <div class="skill-tag">Express</div>
-                        <div class="skill-tag">Symfony</div>
+                    <h3 class="skills-category-title">Frameworks & Bibliothèques</h3>
+                    <div class="skills-with-levels">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">React</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="85" style="width: 0%" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Vue.js</span>
+                                <span class="skill-level-text">Intermédiaire</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="70" style="width: 0%" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Node.js</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="80" style="width: 0%" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Express</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="80" style="width: 0%" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Symfony</span>
+                                <span class="skill-level-text">Intermédiaire</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="65" style="width: 0%" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
                     </div>
 
-                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Outils & Technologies</h3>
-                    <div class="skills-grid">
-                        <div class="skill-tag">Git</div>
-                        <div class="skill-tag">Docker</div>
-                        <div class="skill-tag">PostgreSQL</div>
-                        <div class="skill-tag">MongoDB</div>
-                        <div class="skill-tag">REST API</div>
+                    <h3 class="skills-category-title">Outils & Technologies</h3>
+                    <div class="skills-with-levels">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Git</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="85" style="width: 0%" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Docker</span>
+                                <span class="skill-level-text">Intermédiaire</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="70" style="width: 0%" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">PostgreSQL</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="80" style="width: 0%" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">MongoDB</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="75" style="width: 0%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">REST API</span>
+                                <span class="skill-level-text">Avancé</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" data-level="90" style="width: 0%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -137,24 +264,24 @@
                 <div class="card">
                     <h2>Langues</h2>
                     <div class="grid grid-3">
-                        <div>
-                            <h3 style="margin-bottom: 0.5rem;">Français</h3>
-                            <p style="color: var(--text-secondary);">Langue maternelle</p>
+                        <div class="language-item">
+                            <h3 class="language-name">Français</h3>
+                            <p class="language-level">Langue maternelle</p>
                         </div>
-                        <div>
-                            <h3 style="margin-bottom: 0.5rem;">Anglais</h3>
-                            <p style="color: var(--text-secondary);">Courant (C1)</p>
+                        <div class="language-item">
+                            <h3 class="language-name">Anglais</h3>
+                            <p class="language-level">Courant (C1)</p>
                         </div>
-                        <div>
-                            <h3 style="margin-bottom: 0.5rem;">Espagnol</h3>
-                            <p style="color: var(--text-secondary);">Débutant (A2)</p>
+                        <div class="language-item">
+                            <h3 class="language-name">Espagnol</h3>
+                            <p class="language-level">Débutant (A2)</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Download CV Button -->
-            <div style="text-align: center; margin-top: 3rem; margin-bottom: 3rem;">
+            <div class="download-section">
                 <a href="#" class="download-cv-btn" id="download-cv-btn">
                     Télécharger mon CV (PDF)
                 </a>
@@ -165,7 +292,7 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Portfolio. Créé avec ❤️ et du code.</p>
-        <p style="margin-top: 0.5rem;">
+        <p class="footer-links">
             <a href="https://github.com" target="_blank">GitHub</a> | 
             <a href="https://linkedin.com" target="_blank">LinkedIn</a>
         </p>
