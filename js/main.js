@@ -182,6 +182,13 @@ function applyHomeTranslations(home) {
     const heroCta = document.querySelector('.hero-content .cta-button');
     if (heroCta) heroCta.textContent = home.heroCta;
     
+    // VSCode window translations
+    const vscodePassion = document.querySelector('[data-i18n="vscodePassion"]');
+    if (vscodePassion) vscodePassion.textContent = `'${home.vscodePassion}'`;
+    
+    const vscodeReturn = document.querySelector('[data-i18n="vscodeReturn"]');
+    if (vscodeReturn) vscodeReturn.textContent = `'${home.vscodeReturn}'`;
+    
     // About section
     const aboutTitle = document.querySelector('#about h2');
     if (aboutTitle) aboutTitle.textContent = home.aboutTitle;
@@ -528,6 +535,15 @@ function applyCommonTranslations(common) {
     const scrollToTop = document.getElementById('scroll-to-top');
     if (scrollToTop) {
         scrollToTop.setAttribute('aria-label', common.scrollToTop);
+    }
+    
+    // Translate back buttons on hobby pages
+    const t = translations[currentLanguage];
+    if (t.hobbies && t.hobbies.backButton) {
+        const backButtons = document.querySelectorAll('[data-i18n="backButton"]');
+        backButtons.forEach(btn => {
+            btn.textContent = t.hobbies.backButton;
+        });
     }
 }
 

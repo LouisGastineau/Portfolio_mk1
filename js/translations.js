@@ -20,6 +20,8 @@ const translations = {
             heroTitle: "Bienvenue sur mon Portfolio",
             heroSubtitle: "Développeur Web Full Stack passionné par la création d'expériences numériques exceptionnelles",
             heroCta: "Découvrir mon travail",
+            vscodePassion: "Créer des expériences web",
+            vscodeReturn: "Applications innovantes",
             aboutTitle: "À propos de moi",
             aboutP1: "Développeur web full stack avec une passion pour la création d'applications web modernes et performantes. Je combine créativité et compétences techniques pour transformer des idées en solutions digitales innovantes.",
             aboutP2: "Mon approche se concentre sur l'expérience utilisateur, la performance et le code propre. Je suis constamment à la recherche de nouvelles technologies et de meilleures pratiques pour améliorer mes compétences.",
@@ -144,7 +146,8 @@ const translations = {
             hobby3Desc: "L'escalade me permet de repousser mes limites physiques et mentales tout en profitant de la nature et des sensations fortes.",
             hobby4Title: "Jeux de Société",
             hobby4Desc: "Amateur de jeux de plateau, j'apprécie les moments conviviaux autour de stratégies et mécaniques de jeu variées.",
-            discoverMore: "En savoir plus →"
+            discoverMore: "En savoir plus →",
+            backButton: "← Retour aux hobbies"
         },
         
         // Footer
@@ -187,6 +190,8 @@ const translations = {
             heroTitle: "Welcome to my Portfolio",
             heroSubtitle: "Full Stack Web Developer passionate about creating exceptional digital experiences",
             heroCta: "Discover my work",
+            vscodePassion: "Creating web experiences",
+            vscodeReturn: "Innovative applications",
             aboutTitle: "About me",
             aboutP1: "Full stack web developer with a passion for creating modern and efficient web applications. I combine creativity and technical skills to transform ideas into innovative digital solutions.",
             aboutP2: "My approach focuses on user experience, performance, and clean code. I am constantly seeking new technologies and best practices to improve my skills.",
@@ -311,7 +316,8 @@ const translations = {
             hobby3Desc: "Rock climbing allows me to push my physical and mental limits while enjoying nature and thrills.",
             hobby4Title: "Board Games",
             hobby4Desc: "Board game enthusiast, I appreciate friendly moments around varied strategies and game mechanics.",
-            discoverMore: "Learn more →"
+            discoverMore: "Learn more →",
+            backButton: "← Back to hobbies"
         },
         
         // Footer
