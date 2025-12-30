@@ -147,7 +147,7 @@ const translations = {
             hobby4Title: "Jeux de Société",
             hobby4Desc: "Amateur de jeux de plateau, j'apprécie les moments conviviaux autour de stratégies et mécaniques de jeu variées.",
             discoverMore: "En savoir plus →",
-            backButton: "← Retour aux hobbies"
+            backButton: "Retour aux hobbies"
         },
         
         // Footer
@@ -317,7 +317,7 @@ const translations = {
             hobby4Title: "Board Games",
             hobby4Desc: "Board game enthusiast, I appreciate friendly moments around varied strategies and game mechanics.",
             discoverMore: "Learn more →",
-            backButton: "← Back to hobbies"
+            backButton: "Back to hobbies"
         },
         
         // Footer
