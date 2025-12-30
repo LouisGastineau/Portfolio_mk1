@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
+    initI18n();
     initThemeToggle();
     initMouseLight();
     initBackgroundStars();
@@ -17,6 +18,518 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollToTop();
     initSkillBars();
 });
+
+// ===========================
+// Internationalization (i18n)
+// ===========================
+
+let currentLanguage = 'fr';
+
+function initI18n() {
+    // Get saved language or detect browser language
+    const savedLang = localStorage.getItem('language');
+    const browserLang = navigator.language || navigator.userLanguage;
+    const detectedLang = browserLang.startsWith('en') ? 'en' : 'fr';
+    
+    // Use saved language, or browser language, or default to French
+    currentLanguage = savedLang || detectedLang || 'fr';
+    
+    // Apply translations
+    applyTranslations(currentLanguage);
+    
+    // Create language switcher
+    createLanguageSwitcher();
+}
+
+function createLanguageSwitcher() {
+    // Create language switcher container
+    const langSwitcher = document.createElement('div');
+    langSwitcher.className = 'language-switcher';
+    langSwitcher.setAttribute('role', 'group');
+    langSwitcher.setAttribute('aria-label', 'Language selection');
+    
+    // Create FR button
+    const frButton = document.createElement('button');
+    frButton.textContent = 'FR';
+    frButton.className = 'lang-btn';
+    frButton.setAttribute('aria-label', 'Français');
+    if (currentLanguage === 'fr') {
+        frButton.classList.add('active');
+    }
+    frButton.addEventListener('click', () => switchLanguage('fr'));
+    
+    // Create separator
+    const separator = document.createElement('span');
+    separator.textContent = ' / ';
+    separator.className = 'lang-separator';
+    
+    // Create EN button
+    const enButton = document.createElement('button');
+    enButton.textContent = 'EN';
+    enButton.className = 'lang-btn';
+    enButton.setAttribute('aria-label', 'English');
+    if (currentLanguage === 'en') {
+        enButton.classList.add('active');
+    }
+    enButton.addEventListener('click', () => switchLanguage('en'));
+    
+    // Append buttons to switcher
+    langSwitcher.appendChild(frButton);
+    langSwitcher.appendChild(separator);
+    langSwitcher.appendChild(enButton);
+    
+    // Insert switcher into navigation
+    const navContainer = document.querySelector('.nav-container');
+    if (navContainer) {
+        navContainer.appendChild(langSwitcher);
+    }
+}
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', lang);
+    
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if ((lang === 'fr' && btn.textContent === 'FR') || 
+            (lang === 'en' && btn.textContent === 'EN')) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Apply translations
+    applyTranslations(lang);
+}
+
+function applyTranslations(lang) {
+    // Get current page
+    const currentPage = getCurrentPage();
+    
+    // Update document attributes
+    document.documentElement.setAttribute('lang', lang);
+    
+    // Get translation object for current page
+    const t = translations[lang];
+    
+    // Apply navigation translations
+    applyNavTranslations(t.nav);
+    
+    // Apply page-specific translations
+    switch(currentPage) {
+        case 'index':
+            applyHomeTranslations(t.home);
+            break;
+        case 'cv':
+            applyCVTranslations(t.cv);
+            break;
+        case 'projects':
+            applyProjectsTranslations(t.projects);
+            break;
+        case 'contact':
+            applyContactTranslations(t.contact);
+            break;
+        case 'hobbies':
+            applyHobbiesTranslations(t.hobbies);
+            break;
+    }
+    
+    // Apply footer translations
+    applyFooterTranslations(t.footer);
+    
+    // Apply common translations
+    applyCommonTranslations(t.common);
+}
+
+function getCurrentPage() {
+    const path = window.location.pathname;
+    const page = path.substring(path.lastIndexOf('/') + 1);
+    
+    if (page === '' || page === 'index.html') return 'index';
+    if (page === 'cv.html') return 'cv';
+    if (page === 'projects.html') return 'projects';
+    if (page === 'contact.html') return 'contact';
+    if (page === 'hobbies.html') return 'hobbies';
+    
+    return 'index';
+}
+
+function applyNavTranslations(nav) {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === 'index.html') link.textContent = nav.home;
+        else if (href === 'cv.html') link.textContent = nav.cv;
+        else if (href === 'projects.html') link.textContent = nav.projects;
+        else if (href === 'hobbies.html') link.textContent = nav.hobbies;
+        else if (href === 'contact.html') link.textContent = nav.contact;
+    });
+}
+
+function applyHomeTranslations(home) {
+    // Update meta
+    document.title = home.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', home.metaDescription);
+    
+    // Hero section
+    const heroTitle = document.querySelector('.hero-content h1');
+    if (heroTitle) heroTitle.textContent = home.heroTitle;
+    
+    const heroSubtitle = document.querySelector('.hero-content p');
+    if (heroSubtitle) heroSubtitle.textContent = home.heroSubtitle;
+    
+    const heroCta = document.querySelector('.hero-content .cta-button');
+    if (heroCta) heroCta.textContent = home.heroCta;
+    
+    // About section
+    const aboutTitle = document.querySelector('#about h2');
+    if (aboutTitle) aboutTitle.textContent = home.aboutTitle;
+    
+    const aboutPs = document.querySelectorAll('#about .text-description');
+    if (aboutPs.length >= 2) {
+        aboutPs[0].textContent = home.aboutP1;
+        aboutPs[1].textContent = home.aboutP2;
+    }
+    
+    const valuesTitle = document.querySelector('#about h3');
+    if (valuesTitle) valuesTitle.textContent = home.valuesTitle;
+    
+    const valuesList = document.querySelectorAll('#about .feature-list li');
+    if (valuesList.length >= 5) {
+        valuesList[0].textContent = home.valuesInnovation;
+        valuesList[1].textContent = home.valuesExcellence;
+        valuesList[2].textContent = home.valuesCollaboration;
+        valuesList[3].textContent = home.valuesLearning;
+        valuesList[4].textContent = home.valuesPerformance;
+    }
+    
+    // Skills section
+    const skillsTitle = document.querySelector('.section-alternate.right h2');
+    if (skillsTitle) skillsTitle.textContent = home.skillsTitle;
+    
+    const skillsSubtitle = document.querySelector('.section-alternate.right .section-subtitle');
+    if (skillsSubtitle) skillsSubtitle.textContent = home.skillsSubtitle;
+    
+    const categoryTitles = document.querySelectorAll('.category-title');
+    if (categoryTitles.length >= 3) {
+        categoryTitles[0].textContent = home.skillsFrontend;
+        categoryTitles[1].textContent = home.skillsBackend;
+        categoryTitles[2].textContent = home.skillsTools;
+    }
+    
+    // Target skill section descriptions specifically
+    const skillSection = document.querySelector('.section-alternate.right');
+    if (skillSection) {
+        const skillDescs = skillSection.querySelectorAll('.text-description');
+        if (skillDescs.length >= 3) {
+            skillDescs[0].textContent = home.skillsFrontendDesc;
+            skillDescs[1].textContent = home.skillsBackendDesc;
+            skillDescs[2].textContent = home.skillsToolsDesc;
+        }
+    }
+    
+    // CTA section
+    const ctaTitle = document.querySelector('.card-cta h2');
+    if (ctaTitle) ctaTitle.textContent = home.ctaTitle;
+    
+    const ctaSubtitle = document.querySelector('.card-cta .section-subtitle');
+    if (ctaSubtitle) ctaSubtitle.textContent = home.ctaSubtitle;
+    
+    const ctaButton = document.querySelector('.card-cta .cta-button');
+    if (ctaButton) ctaButton.textContent = home.ctaButton;
+}
+
+function applyCVTranslations(cv) {
+    // Update meta
+    document.title = cv.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', cv.metaDescription);
+    
+    // Header
+    const pageTitle = document.querySelector('.section-header h1');
+    if (pageTitle) pageTitle.textContent = cv.pageTitle;
+    
+    const pageSubtitle = document.querySelector('.section-header p');
+    if (pageSubtitle) pageSubtitle.textContent = cv.pageSubtitle;
+    
+    // Profile
+    const profileTitle = document.querySelector('.profile-card h2');
+    if (profileTitle) profileTitle.textContent = cv.profileTitle;
+    
+    const profileDesc = document.querySelector('.profile-description');
+    if (profileDesc) profileDesc.textContent = cv.profileDesc;
+    
+    // Experience
+    const expTitle = document.querySelectorAll('.cv-section h2')[0];
+    if (expTitle) expTitle.textContent = cv.experienceTitle;
+    
+    const expJob1Title = document.querySelector('.cv-item h3');
+    if (expJob1Title) expJob1Title.textContent = cv.experienceJob1Title;
+    
+    const expJob1Period = document.querySelector('.cv-item .date');
+    if (expJob1Period) expJob1Period.textContent = cv.experienceJob1Period;
+    
+    const expJob1Company = document.querySelector('.cv-item p strong');
+    if (expJob1Company) expJob1Company.textContent = cv.experienceJob1Company;
+    
+    const expJob1Items = document.querySelectorAll('.cv-item ul li');
+    if (expJob1Items.length >= 2) {
+        expJob1Items[0].textContent = cv.experienceJob1Desc1;
+        expJob1Items[1].textContent = cv.experienceJob1Desc2;
+    }
+    
+    // Education
+    const eduTitle = document.querySelectorAll('.cv-section h2')[1];
+    if (eduTitle) eduTitle.textContent = cv.educationTitle;
+    
+    const eduItems = document.querySelectorAll('.cv-item');
+    if (eduItems.length >= 3) {
+        const edu1 = eduItems[1];
+        const edu1Title = edu1.querySelector('h3');
+        const edu1Period = edu1.querySelector('.date');
+        const edu1School = edu1.querySelector('p strong');
+        const edu1Desc = edu1.querySelector('.profile-description');
+        
+        if (edu1Title) edu1Title.textContent = cv.educationDegree1Title;
+        if (edu1Period) edu1Period.textContent = cv.educationDegree1Period;
+        if (edu1School) edu1School.textContent = cv.educationDegree1School;
+        if (edu1Desc) edu1Desc.textContent = cv.educationDegree1Desc;
+        
+        const edu2 = eduItems[2];
+        const edu2Title = edu2.querySelector('h3');
+        const edu2Period = edu2.querySelector('.date');
+        const edu2School = edu2.querySelector('p strong');
+        const edu2Desc = edu2.querySelector('.profile-description');
+        
+        if (edu2Title) edu2Title.textContent = cv.educationDegree2Title;
+        if (edu2Period) edu2Period.textContent = cv.educationDegree2Period;
+        if (edu2School) edu2School.textContent = cv.educationDegree2School;
+        if (edu2Desc) edu2Desc.textContent = cv.educationDegree2Desc;
+    }
+    
+    // Skills
+    const skillsTitle = document.querySelectorAll('.cv-section h2')[2];
+    if (skillsTitle) skillsTitle.textContent = cv.skillsTitle;
+    
+    const skillsCategoryTitles = document.querySelectorAll('.skills-category-title');
+    if (skillsCategoryTitles.length >= 3) {
+        skillsCategoryTitles[0].textContent = cv.skillsCategoryLang;
+        skillsCategoryTitles[1].textContent = cv.skillsCategoryFramework;
+        skillsCategoryTitles[2].textContent = cv.skillsCategoryTools;
+    }
+    
+    // Languages
+    const langTitle = document.querySelectorAll('.cv-section h2')[3];
+    if (langTitle) langTitle.textContent = cv.languagesTitle;
+    
+    const langItems = document.querySelectorAll('.language-item');
+    if (langItems.length >= 3) {
+        const fr = langItems[0];
+        const en = langItems[1];
+        const es = langItems[2];
+        
+        const frName = fr.querySelector('.language-name');
+        const frLevel = fr.querySelector('.language-level');
+        if (frName) frName.textContent = cv.languageFrench;
+        if (frLevel) frLevel.textContent = cv.languageFrenchLevel;
+        
+        const enName = en.querySelector('.language-name');
+        const enLevel = en.querySelector('.language-level');
+        if (enName) enName.textContent = cv.languageEnglish;
+        if (enLevel) enLevel.textContent = cv.languageEnglishLevel;
+        
+        const esName = es.querySelector('.language-name');
+        const esLevel = es.querySelector('.language-level');
+        if (esName) esName.textContent = cv.languageSpanish;
+        if (esLevel) esLevel.textContent = cv.languageSpanishLevel;
+    }
+    
+    // Download button
+    const downloadBtn = document.querySelector('.download-cv-btn');
+    if (downloadBtn) downloadBtn.textContent = cv.downloadCV;
+}
+
+function applyProjectsTranslations(projects) {
+    // Update meta
+    document.title = projects.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', projects.metaDescription);
+    
+    // Header
+    const pageTitle = document.querySelector('.section-header h1');
+    if (pageTitle) pageTitle.textContent = projects.pageTitle;
+    
+    const pageSubtitle = document.querySelector('.section-header p');
+    if (pageSubtitle) pageSubtitle.textContent = projects.pageSubtitle;
+    
+    // Intro
+    const introDesc = document.querySelector('.intro-description');
+    if (introDesc) introDesc.textContent = projects.introDesc;
+    
+    // Projects
+    const projectTitles = document.querySelectorAll('.section-alternate h2');
+    if (projectTitles.length >= 2) {
+        projectTitles[0].textContent = projects.project1Title;
+        projectTitles[1].textContent = projects.project2Title;
+    }
+    
+    const projectDescs = document.querySelectorAll('.project-description');
+    if (projectDescs.length >= 2) {
+        projectDescs[0].textContent = projects.project1Desc;
+        projectDescs[1].textContent = projects.project2Desc;
+    }
+    
+    const viewProjectButtons = document.querySelectorAll('.section-alternate .cta-button');
+    viewProjectButtons.forEach(btn => {
+        btn.textContent = projects.viewProject;
+    });
+    
+    // CTA
+    const ctaTitle = document.querySelector('.card-cta h2');
+    if (ctaTitle) ctaTitle.textContent = projects.ctaTitle;
+    
+    const ctaSubtitle = document.querySelector('.card-cta .section-subtitle');
+    if (ctaSubtitle) ctaSubtitle.textContent = projects.ctaSubtitle;
+    
+    const ctaButton = document.querySelector('.card-cta .cta-button');
+    if (ctaButton) ctaButton.textContent = projects.ctaButton;
+}
+
+function applyContactTranslations(contact) {
+    // Update meta
+    document.title = contact.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', contact.metaDescription);
+    
+    // Header
+    const pageTitle = document.querySelector('.section-header h1');
+    if (pageTitle) pageTitle.textContent = contact.pageTitle;
+    
+    const pageSubtitle = document.querySelector('.section-header p');
+    if (pageSubtitle) pageSubtitle.textContent = contact.pageSubtitle;
+    
+    // Form
+    const formTitle = document.querySelector('.contact-form h2');
+    if (formTitle) formTitle.textContent = contact.formTitle;
+    
+    const labels = document.querySelectorAll('.form-group label');
+    const inputs = document.querySelectorAll('.form-group input, .form-group textarea');
+    
+    if (labels.length >= 4) {
+        labels[0].textContent = contact.formNameLabel;
+        labels[1].textContent = contact.formEmailLabel;
+        labels[2].textContent = contact.formSubjectLabel;
+        labels[3].textContent = contact.formMessageLabel;
+    }
+    
+    if (inputs.length >= 4) {
+        inputs[0].setAttribute('placeholder', contact.formNamePlaceholder);
+        inputs[1].setAttribute('placeholder', contact.formEmailPlaceholder);
+        inputs[2].setAttribute('placeholder', contact.formSubjectPlaceholder);
+        inputs[3].setAttribute('placeholder', contact.formMessagePlaceholder);
+    }
+    
+    const submitBtn = document.querySelector('.contact-form .btn');
+    if (submitBtn) submitBtn.textContent = contact.formSubmit;
+    
+    // Contact info
+    const emailTitle = document.querySelector('.contact-info h3');
+    if (emailTitle) emailTitle.textContent = contact.emailTitle;
+    
+    // Social
+    const socialTitle = document.querySelector('.social-section h2');
+    if (socialTitle) socialTitle.textContent = contact.socialTitle;
+    
+    // FAQ
+    const faqTitle = document.querySelector('.faq-section h2');
+    if (faqTitle) faqTitle.textContent = contact.faqTitle;
+    
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (faqItems.length >= 4) {
+        const faq1 = faqItems[0];
+        const faq1Q = faq1.querySelector('h3');
+        const faq1A = faq1.querySelector('p');
+        if (faq1Q) faq1Q.textContent = contact.faq1Question;
+        if (faq1A) faq1A.textContent = contact.faq1Answer;
+        
+        const faq2 = faqItems[1];
+        const faq2Q = faq2.querySelector('h3');
+        const faq2A = faq2.querySelector('p');
+        if (faq2Q) faq2Q.textContent = contact.faq2Question;
+        if (faq2A) faq2A.textContent = contact.faq2Answer;
+        
+        const faq3 = faqItems[2];
+        const faq3Q = faq3.querySelector('h3');
+        const faq3A = faq3.querySelector('p');
+        if (faq3Q) faq3Q.textContent = contact.faq3Question;
+        if (faq3A) faq3A.textContent = contact.faq3Answer;
+        
+        const faq4 = faqItems[3];
+        const faq4Q = faq4.querySelector('h3');
+        const faq4A = faq4.querySelector('p');
+        if (faq4Q) faq4Q.textContent = contact.faq4Question;
+        if (faq4A) faq4A.textContent = contact.faq4Answer;
+    }
+}
+
+function applyHobbiesTranslations(hobbies) {
+    // Update meta
+    document.title = hobbies.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', hobbies.metaDescription);
+    
+    // Header
+    const pageTitle = document.querySelector('.section-header h1');
+    if (pageTitle) pageTitle.textContent = hobbies.pageTitle;
+    
+    const pageSubtitle = document.querySelector('.section-header p');
+    if (pageSubtitle) pageSubtitle.textContent = hobbies.pageSubtitle;
+    
+    // Intro
+    const introDesc = document.querySelector('.intro-description');
+    if (introDesc) introDesc.textContent = hobbies.introDesc;
+    
+    // Hobby titles and descriptions
+    const hobbyCards = document.querySelectorAll('.hobby-card-link');
+    if (hobbyCards.length >= 4) {
+        const titles = [hobbies.hobby1Title, hobbies.hobby2Title, hobbies.hobby3Title, hobbies.hobby4Title];
+        const descs = [hobbies.hobby1Desc, hobbies.hobby2Desc, hobbies.hobby3Desc, hobbies.hobby4Desc];
+        
+        hobbyCards.forEach((card, index) => {
+            const title = card.querySelector('h3');
+            const desc = card.querySelector('.hobby-description');
+            if (title && index < titles.length) title.textContent = titles[index];
+            if (desc && index < descs.length) desc.textContent = descs[index];
+        });
+    }
+    
+    // "Discover more" links
+    const discoverLinks = document.querySelectorAll('.hobby-link-text');
+    discoverLinks.forEach(link => {
+        link.textContent = hobbies.discoverMore;
+    });
+}
+
+function applyFooterTranslations(footer) {
+    const footerPs = document.querySelectorAll('footer p');
+    if (footerPs.length >= 1) {
+        footerPs[0].innerHTML = footer.copyright;
+    }
+    
+    const footerLinks = document.querySelectorAll('footer a');
+    if (footerLinks.length >= 2) {
+        footerLinks[0].textContent = footer.github;
+        footerLinks[1].textContent = footer.linkedin;
+    }
+}
+
+function applyCommonTranslations(common) {
+    const scrollToTop = document.getElementById('scroll-to-top');
+    if (scrollToTop) {
+        scrollToTop.setAttribute('aria-label', common.scrollToTop);
+    }
+}
 
 // ===========================
 // Theme Toggle (Dark/Light Mode)
@@ -416,7 +929,8 @@ function initContactForm() {
         window.location.href = mailtoLink;
         
         // Show success message
-        showNotification('Votre client email va s\'ouvrir pour envoyer le message.', 'success');
+        const t = translations[currentLanguage];
+        showNotification(t.notifications.emailOpening, 'success');
         
         // Reset form
         setTimeout(() => {
@@ -662,7 +1176,8 @@ startxref
         // Clean up the URL object
         URL.revokeObjectURL(url);
         
-        showNotification('Téléchargement du CV en cours...', 'success');
+        const t = translations[currentLanguage];
+        showNotification(t.notifications.cvDownloading, 'success');
     });
 }
 
@@ -681,12 +1196,13 @@ function initUwuMode() {
     uwuTrigger.addEventListener('click', () => {
         uwuModeActive = !uwuModeActive;
         
+        const t = translations[currentLanguage];
         if (uwuModeActive) {
             activateUwuMode();
-            showNotification('UwU mode activé ! >w<', 'info');
+            showNotification(t.notifications.uwuActivated, 'info');
         } else {
             deactivateUwuMode();
-            showNotification('Mode normal restauré', 'info');
+            showNotification(t.notifications.uwuDeactivated, 'info');
         }
     });
 }
