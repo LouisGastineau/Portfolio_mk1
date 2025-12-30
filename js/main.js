@@ -504,8 +504,8 @@ function applyHobbiesTranslations(hobbies) {
         const descs = [hobbies.hobby1Desc, hobbies.hobby2Desc, hobbies.hobby3Desc, hobbies.hobby4Desc];
         
         hobbyCards.forEach((card, index) => {
-            const title = card.querySelector('h3');
-            const desc = card.querySelector('.hobby-description');
+            const title = card.querySelector('h2');
+            const desc = card.querySelector('.text-description');
             if (title && index < titles.length) title.textContent = titles[index];
             if (desc && index < descs.length) desc.textContent = descs[index];
         });
