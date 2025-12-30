@@ -714,6 +714,7 @@ main {
     margin-bottom: 1.5rem;
 }
 
+/* Reduce top margin for the first category title in skills section */
 .skills-category-title:first-of-type {
     margin-top: 1.5rem;
 }

@@ -218,11 +218,10 @@ function applyHomeTranslations(home) {
         categoryTitles[2].textContent = home.skillsTools;
     }
     
-    const descriptions = document.querySelectorAll('.section-alternate .text-description');
-    if (descriptions.length >= 3) {
-        // Find the right descriptions (not in about section)
-        const skillDescs = Array.from(descriptions).filter(d => 
-            d.closest('.section-alternate.right') || d.closest('.skills-columns'));
+    // Target skill section descriptions specifically
+    const skillSection = document.querySelector('.section-alternate.right');
+    if (skillSection) {
+        const skillDescs = skillSection.querySelectorAll('.text-description');
         if (skillDescs.length >= 3) {
             skillDescs[0].textContent = home.skillsFrontendDesc;
             skillDescs[1].textContent = home.skillsBackendDesc;

@@ -338,7 +338,5 @@ const translations = {
     }
 };
 
-// Export for use in main.js
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = translations;
-}
+// Export for use in main.js (browser environment)
+window.translations = translations;
