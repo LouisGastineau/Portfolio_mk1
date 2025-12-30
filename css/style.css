@@ -714,7 +714,7 @@ main {
     margin-bottom: 1.5rem;
 }
 
-.skills-category-title:first-child {
+.skills-category-title:first-of-type {
     margin-top: 1.5rem;
 }
 

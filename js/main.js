@@ -475,8 +475,41 @@ function applyContactTranslations(contact) {
 }
 
 function applyHobbiesTranslations(hobbies) {
-    // This would be implemented if hobbies.html needs translation
-    // For now, we'll leave it as a placeholder
+    // Update meta
+    document.title = hobbies.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', hobbies.metaDescription);
+    
+    // Header
+    const pageTitle = document.querySelector('.section-header h1');
+    if (pageTitle) pageTitle.textContent = hobbies.pageTitle;
+    
+    const pageSubtitle = document.querySelector('.section-header p');
+    if (pageSubtitle) pageSubtitle.textContent = hobbies.pageSubtitle;
+    
+    // Intro
+    const introDesc = document.querySelector('.intro-description');
+    if (introDesc) introDesc.textContent = hobbies.introDesc;
+    
+    // Hobby titles and descriptions
+    const hobbyCards = document.querySelectorAll('.hobby-card-link');
+    if (hobbyCards.length >= 4) {
+        const titles = [hobbies.hobby1Title, hobbies.hobby2Title, hobbies.hobby3Title, hobbies.hobby4Title];
+        const descs = [hobbies.hobby1Desc, hobbies.hobby2Desc, hobbies.hobby3Desc, hobbies.hobby4Desc];
+        
+        hobbyCards.forEach((card, index) => {
+            const title = card.querySelector('h3');
+            const desc = card.querySelector('.hobby-description');
+            if (title && index < titles.length) title.textContent = titles[index];
+            if (desc && index < descs.length) desc.textContent = descs[index];
+        });
+    }
+    
+    // "Discover more" links
+    const discoverLinks = document.querySelectorAll('.hobby-link-text');
+    discoverLinks.forEach(link => {
+        link.textContent = hobbies.discoverMore;
+    });
 }
 
 function applyFooterTranslations(footer) {
