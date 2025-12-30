@@ -196,7 +196,7 @@ nav {
     align-items: center;
     justify-content: center;
     z-index: 999;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
@@ -267,7 +267,7 @@ nav {
     height: 3px;
     background: var(--text-primary);
     border-radius: 2px;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .nav-actions {
@@ -292,7 +292,7 @@ nav {
     font-weight: 600;
     font-size: 0.9rem;
     padding: 0.5rem;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     font-family: 'Inter', sans-serif;
 }
 
@@ -414,6 +414,7 @@ main {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .vscode-window:hover {
@@ -561,9 +562,10 @@ main {
     border: 1px solid var(--glass-border);
     border-radius: 1rem;
     padding: 2rem;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
+    will-change: transform;
 }
 
 .card::before {
@@ -575,6 +577,7 @@ main {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
     transition: left 0.5s ease;
+    will-change: left;
 }
 
 .card:hover {
@@ -601,11 +604,12 @@ main {
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    will-change: transform;
 }
 
 .cta-button::before,
@@ -731,7 +735,7 @@ main {
     border-radius: 0.5rem;
     text-align: center;
     border: 1px solid var(--glass-border);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .skill-tag:hover {
@@ -1059,7 +1063,8 @@ main {
     aspect-ratio: 16/9;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .gallery-item:hover {
@@ -1134,7 +1139,7 @@ main {
     color: var(--text-primary);
     font-family: inherit;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input:focus,
@@ -1260,7 +1265,7 @@ footer a:hover {
     border-radius: 0.5rem;
     color: var(--text-primary);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     font-size: 1.5rem;
 }
 
@@ -1289,7 +1294,7 @@ footer a:hover {
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     cursor: pointer;
     position: relative;
@@ -1341,7 +1346,7 @@ footer a:hover {
     font-size: 1.5rem;
     cursor: pointer;
     z-index: 999;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
     visibility: hidden;
     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
