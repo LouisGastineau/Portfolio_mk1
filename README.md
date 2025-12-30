@@ -1,6 +1,6 @@
 # Portfolio_mk1
 
-Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScript vanilla.
+Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScript vanilla. (Oui, ce README a été généré par une IA.)
 
 ## 🎨 Caractéristiques
 
