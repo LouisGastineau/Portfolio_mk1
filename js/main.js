@@ -139,6 +139,12 @@ function applyTranslations(lang) {
     
     // Apply common translations
     applyCommonTranslations(t.common);
+    
+    // Re-apply uwu mode if it was active
+    if (uwuModeActive) {
+        originalTexts.clear();
+        activateUwuMode();
+    }
 }
 
 function getCurrentPage() {
@@ -1209,8 +1215,18 @@ function initUwuMode() {
     
     if (!uwuTrigger) return;
 
+    // Load saved uwu mode state from localStorage
+    const savedUwuMode = localStorage.getItem('uwuMode');
+    if (savedUwuMode === 'true') {
+        uwuModeActive = true;
+        activateUwuMode();
+    }
+
     uwuTrigger.addEventListener('click', () => {
         uwuModeActive = !uwuModeActive;
+        
+        // Save uwu mode state to localStorage
+        localStorage.setItem('uwuMode', uwuModeActive.toString());
         
         const t = translations[currentLanguage];
         if (uwuModeActive) {
