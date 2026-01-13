@@ -1430,14 +1430,19 @@ function initImageModal() {
         }
     });
     
+    // Function to update modal image display
+    function updateModalImage(index) {
+        const image = images[index];
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+        modalCaption.textContent = image.caption;
+    }
+    
     // Function to open modal
     function openModal() {
         if (images.length === 0) return;
         
-        const image = images[currentIndex];
-        modalImage.src = image.src;
-        modalImage.alt = image.alt;
-        modalCaption.textContent = image.caption;
+        updateModalImage(currentIndex);
         
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1461,19 +1466,13 @@ function initImageModal() {
     // Function to show previous image
     function showPrevImage() {
         currentIndex = (currentIndex - 1 + images.length) % images.length;
-        const image = images[currentIndex];
-        modalImage.src = image.src;
-        modalImage.alt = image.alt;
-        modalCaption.textContent = image.caption;
+        updateModalImage(currentIndex);
     }
     
     // Function to show next image
     function showNextImage() {
         currentIndex = (currentIndex + 1) % images.length;
-        const image = images[currentIndex];
-        modalImage.src = image.src;
-        modalImage.alt = image.alt;
-        modalCaption.textContent = image.caption;
+        updateModalImage(currentIndex);
     }
     
     // Event listeners
@@ -1493,10 +1492,13 @@ function initImageModal() {
         if (!modal.classList.contains('active')) return;
         
         if (e.key === 'Escape') {
+            e.preventDefault();
             closeModal();
         } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
             showPrevImage();
         } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
             showNextImage();
         }
     });
