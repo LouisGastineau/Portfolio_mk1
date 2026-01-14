@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initUwuMode();
     initScrollToTop();
     initSkillBars();
+    initImageModal();
 });
 
 // ===========================
@@ -1348,4 +1349,157 @@ function initSkillBars() {
     
     // Observe all skill bars
     skillBars.forEach(bar => observer.observe(bar));
+}
+
+// ===========================
+// Image Modal / Lightbox
+// ===========================
+
+function initImageModal() {
+    // Get all gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    if (galleryItems.length === 0) return;
+
+    // Create modal element
+    const modal = document.createElement('div');
+    modal.className = 'image-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-label', 'Image viewer');
+    
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.className = 'image-modal-content';
+    
+    const modalImage = document.createElement('img');
+    modalImage.alt = '';
+    
+    const modalCaption = document.createElement('div');
+    modalCaption.className = 'image-modal-caption';
+    
+    modalContent.appendChild(modalImage);
+    modalContent.appendChild(modalCaption);
+    
+    // Create close button
+    const closeButton = document.createElement('button');
+    closeButton.className = 'image-modal-close';
+    closeButton.innerHTML = '×';
+    closeButton.setAttribute('aria-label', 'Close');
+    
+    // Create navigation buttons
+    const prevButton = document.createElement('button');
+    prevButton.className = 'image-modal-nav image-modal-prev';
+    prevButton.innerHTML = '‹';
+    prevButton.setAttribute('aria-label', 'Previous image');
+    
+    const nextButton = document.createElement('button');
+    nextButton.className = 'image-modal-nav image-modal-next';
+    nextButton.innerHTML = '›';
+    nextButton.setAttribute('aria-label', 'Next image');
+    
+    // Append to modal
+    modal.appendChild(closeButton);
+    modal.appendChild(prevButton);
+    modal.appendChild(nextButton);
+    modal.appendChild(modalContent);
+    
+    // Append to body
+    document.body.appendChild(modal);
+    
+    // Store current image index
+    let currentIndex = 0;
+    const images = [];
+    
+    // Collect all images from gallery items
+    galleryItems.forEach((item, index) => {
+        const img = item.querySelector('img');
+        const caption = item.querySelector('.gallery-caption p');
+        
+        if (img) {
+            images.push({
+                src: img.src,
+                alt: img.alt,
+                caption: caption ? caption.textContent : ''
+            });
+            
+            // Add click event to open modal
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                openModal();
+            });
+        }
+    });
+    
+    // Function to update modal image display
+    function updateModalImage(index) {
+        const image = images[index];
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+        modalCaption.textContent = image.caption;
+    }
+    
+    // Function to open modal
+    function openModal() {
+        if (images.length === 0) return;
+        
+        updateModalImage(currentIndex);
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Show/hide navigation buttons based on image count
+        if (images.length <= 1) {
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'none';
+        } else {
+            prevButton.style.display = 'flex';
+            nextButton.style.display = 'flex';
+        }
+    }
+    
+    // Function to close modal
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // Function to show previous image
+    function showPrevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateModalImage(currentIndex);
+    }
+    
+    // Function to show next image
+    function showNextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateModalImage(currentIndex);
+    }
+    
+    // Event listeners
+    closeButton.addEventListener('click', closeModal);
+    prevButton.addEventListener('click', showPrevImage);
+    nextButton.addEventListener('click', showNextImage);
+    
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            closeModal();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            showPrevImage();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            showNextImage();
+        }
+    });
 }
