@@ -1081,123 +1081,13 @@ function initDownloadCVButton() {
     downloadBtn.addEventListener('click', (e) => {
         e.preventDefault();
         
-        // Create a simple PDF document with text content
-        // Note: This is a basic PDF. For production, a real PDF file should be used.
-        const pdfContent = `%PDF-1.4
-1 0 obj
-<<
-/Type /Catalog
-/Pages 2 0 R
->>
-endobj
-2 0 obj
-<<
-/Type /Pages
-/Kids [3 0 R]
-/Count 1
->>
-endobj
-3 0 obj
-<<
-/Type /Page
-/Parent 2 0 R
-/Resources <<
-/Font <<
-/F1 <<
-/Type /Font
-/Subtype /Type1
-/BaseFont /Helvetica-Bold
->>
-/F2 <<
-/Type /Font
-/Subtype /Type1
-/BaseFont /Helvetica
->>
->>
->>
-/MediaBox [0 0 612 792]
-/Contents 4 0 R
->>
-endobj
-4 0 obj
-<<
-/Length 1200
->>
-stream
-BT
-/F1 24 Tf
-50 750 Td
-(Louis Gastineau) Tj
-0 -30 Td
-/F2 12 Tf
-(Developpeur Web Full Stack) Tj
-0 -40 Td
-/F1 16 Tf
-(Experience Professionnelle) Tj
-0 -25 Td
-/F2 11 Tf
-(Developpeur Full Stack Senior - Tech Innovation) Tj
-0 -15 Td
-(2021 - Present) Tj
-0 -25 Td
-(Developpeur Frontend - Digital Solutions) Tj
-0 -15 Td
-(2019 - 2021) Tj
-0 -40 Td
-/F1 16 Tf
-(Formation) Tj
-0 -25 Td
-/F2 11 Tf
-(Master en Informatique - Universite de Technologie) Tj
-0 -15 Td
-(2015 - 2017) Tj
-0 -40 Td
-/F1 16 Tf
-(Competences) Tj
-0 -25 Td
-/F2 11 Tf
-(JavaScript, TypeScript, React, Node.js, Python) Tj
-0 -15 Td
-(HTML5, CSS3, PostgreSQL, MongoDB, Docker) Tj
-0 -40 Td
-/F1 16 Tf
-(Contact) Tj
-0 -25 Td
-/F2 11 Tf
-(Email: louisgastineau@gmail.com) Tj
-ET
-endstream
-endobj
-xref
-0 5
-0000000000 65535 f
-0000000009 00000 n
-0000000058 00000 n
-0000000115 00000 n
-0000000364 00000 n
-trailer
-<<
-/Size 5
-/Root 1 0 R
->>
-startxref
-1615
-%%EOF`;
-
-        // Create a Blob from the PDF content
-        const blob = new Blob([pdfContent], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        
-        // Create a temporary link and trigger download
+        // Download the PDF file from the public folder
         const link = document.createElement('a');
-        link.href = url;
+        link.href = 'public/CV Louis Gastineau 2025 EKOD-1.pdf';
         link.download = 'CV_Louis_Gastineau.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        
-        // Clean up the URL object
-        URL.revokeObjectURL(url);
         
         const t = translations[currentLanguage];
         showNotification(t.notifications.cvDownloading, 'success');
