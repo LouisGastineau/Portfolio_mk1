@@ -1082,7 +1082,7 @@ function initDownloadCVButton() {
         e.preventDefault();
         
         // Download the PDF file from the public folder
-        const pdfPath = 'public/CV%20Louis%20Gastineau%202025%20EKOD-1.pdf';
+        const pdfPath = '/public/CV%20Louis%20Gastineau%202025%20EKOD-1.pdf';
         
         // Create download link
         const link = document.createElement('a');
