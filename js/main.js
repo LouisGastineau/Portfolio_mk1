@@ -1078,19 +1078,38 @@ function initDownloadCVButton() {
     
     if (!downloadBtn) return;
 
-    downloadBtn.addEventListener('click', (e) => {
+    downloadBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         
         // Download the PDF file from the public folder
-        const link = document.createElement('a');
-        link.href = 'public/CV Louis Gastineau 2025 EKOD-1.pdf';
-        link.download = 'CV_Louis_Gastineau.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        const pdfPath = 'public/CV%20Louis%20Gastineau%202025%20EKOD-1.pdf';
         
-        const t = translations[currentLanguage];
-        showNotification(t.notifications.cvDownloading, 'success');
+        try {
+            // Check if file exists before attempting download
+            const response = await fetch(pdfPath, { method: 'HEAD' });
+            
+            if (!response.ok) {
+                throw new Error('PDF file not found');
+            }
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = pdfPath;
+            link.download = 'CV_Louis_Gastineau.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            const t = translations[currentLanguage];
+            showNotification(t.notifications.cvDownloading, 'success');
+        } catch (error) {
+            console.error('Error downloading CV:', error);
+            const t = translations[currentLanguage];
+            showNotification(
+                t.notifications?.downloadError || 'Error downloading CV. Please try again.',
+                'error'
+            );
+        }
     });
 }
 
