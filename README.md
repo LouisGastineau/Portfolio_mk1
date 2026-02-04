@@ -5,16 +5,16 @@ Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScrip
 ## 📸 Captures d'écran
 
 ### Page d'accueil
-![Homepage](https://github.com/user-attachments/assets/72b1842a-cf04-4aeb-8280-e15b78d19ed0)
+![Homepage](https://github.com/user-attachments/assets/2d98dc58-545e-4576-b9eb-1e2d063a3bab)
 
 ### Page Projets
-![Projects Page](https://github.com/user-attachments/assets/6e9180fb-dcb7-4a17-8208-d914deda9048)
+![Projects Page](https://github.com/user-attachments/assets/9418a332-74a6-4ac0-9b53-573e905bffce)
 
 ### Page Hobbies
-![Hobbies Page](https://github.com/user-attachments/assets/28df5d1f-72dc-47e1-969d-3e2d46dd8186)
+![Hobbies Page](https://github.com/user-attachments/assets/0781fdb5-1cde-4267-aef0-198872952a55)
 
 ### Page Contact
-![Contact Page](https://github.com/user-attachments/assets/884573e4-d5ef-4691-80eb-60719dec7154)
+![Contact Page](https://github.com/user-attachments/assets/795f9ca9-2121-4f89-b727-ce080650413d)
 
 ## 🎨 Caractéristiques
 
