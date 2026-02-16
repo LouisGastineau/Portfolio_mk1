@@ -626,21 +626,43 @@ function initThemeToggle() {
 let particleInterval = null;
 const particles = [];
 const particleTimeouts = [];
-let isPaused = false;
+// Controls both particle creation and animation state when tab is hidden
+let isTabHidden = false;
 
 // Detect current season based on month (Northern Hemisphere)
+// Cache the season to avoid creating new Date objects repeatedly
+let cachedSeason = null;
+let cachedSeasonDate = null;
+
 function getCurrentSeason() {
-    const month = new Date().getMonth(); // 0-11
-    if (month >= 2 && month <= 4) return 'spring'; // March, April, May
-    if (month >= 5 && month <= 7) return 'summer'; // June, July, August
-    if (month >= 8 && month <= 10) return 'fall';   // September, October, November
-    return 'winter'; // December, January, February
+    const now = new Date();
+    const today = now.toDateString();
+    
+    // Return cached season if we're still on the same day
+    if (cachedSeasonDate === today && cachedSeason) {
+        return cachedSeason;
+    }
+    
+    const month = now.getMonth(); // 0-11
+    let season;
+    if (month >= 2 && month <= 4) season = 'spring'; // March, April, May
+    else if (month >= 5 && month <= 7) season = 'summer'; // June, July, August
+    else if (month >= 8 && month <= 10) season = 'fall';   // September, October, November
+    else season = 'winter'; // December, January, February
+    
+    // Cache the result
+    cachedSeason = season;
+    cachedSeasonDate = today;
+    
+    return season;
 }
 
-// Check if device is mobile
+// Check if device is mobile using feature detection
 function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-        || window.innerWidth < 768;
+    // Use feature detection instead of user agent sniffing
+    // Check for touch capability and screen size
+    return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) 
+        && window.innerWidth < 768;
 }
 
 // Get particle configuration based on season
@@ -696,7 +718,7 @@ function initSeasonalParticles() {
     
     // Create particles periodically
     particleInterval = setInterval(() => {
-        if (!isPaused) {
+        if (!isTabHidden) {
             createParticle(config);
         }
     }, config.interval);
@@ -774,7 +796,7 @@ function removeParticles() {
 // Pause/resume particles when tab visibility changes
 function initParticleVisibilityControl() {
     document.addEventListener('visibilitychange', () => {
-        isPaused = document.hidden;
+        isTabHidden = document.hidden;
         
         if (document.hidden) {
             // Pause animations by adding a class
