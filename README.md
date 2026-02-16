@@ -27,8 +27,9 @@ Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScrip
 - **Système modulaire** : Pages hobbies extensibles avec modules réutilisables
 - **Bilingue** : Support complet français/anglais avec sélecteur de langue
 - **Thèmes** : Basculement entre mode sombre et clair
-- **Effets saisonniers** : Flocons de neige animés en mode clair
+- **Effets saisonniers** : Particules animées qui changent automatiquement selon la saison (hiver ❄️, printemps 🌸, été 🍃, automne 🍂)
 - **Étoiles volantes** : Animation d'étoiles en arrière-plan en mode sombre
+- **Optimisé** : Réduction automatique des effets sur mobile et respect de prefers-reduced-motion
 
 ## 📄 Pages
 
@@ -120,9 +121,15 @@ Portfolio_mk1/
 ### Thèmes et animations
 - **Basculement Dark/Light mode** avec bouton dédié
 - Sauvegarde du thème dans localStorage
-- **Flocons de neige animés** en mode clair (effet hivernal)
+- **Effets saisonniers automatiques** en mode clair avec détection de la saison :
+  - ❄️ **Hiver** (Déc-Fév) : Flocons de neige bleus sur fond bleu clair
+  - 🌸 **Printemps** (Mars-Mai) : Pétales de fleurs roses sur fond rose
+  - 🍃 **Été** (Juin-Août) : Petites feuilles vertes sur fond bleu clair
+  - 🍂 **Automne** (Sept-Nov) : Feuilles oranges/marron sur fond orange
 - **Étoiles volantes animées** en mode sombre (effet spatial)
 - Animations CSS fluides et performantes
+- **Optimisations mobiles** : Réduction automatique du nombre de particules sur mobile
+- **Pause automatique** : Les animations se mettent en pause quand l'onglet n'est pas actif
 - Support de `prefers-reduced-motion` pour l'accessibilité
 
 ### Système modulaire pour pages hobbies
