@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollToTop();
     initSkillBars();
     initImageModal();
+    initParticleVisibilityControl();
 });
 
 // ===========================
@@ -563,6 +564,12 @@ function initThemeToggle() {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     
+    // Set season attribute if in light mode
+    if (savedTheme === 'light') {
+        const season = getCurrentSeason();
+        document.documentElement.setAttribute('data-season', season);
+    }
+    
     // Create theme toggle button
     const themeToggle = document.createElement('button');
     themeToggle.className = 'theme-toggle';
@@ -577,9 +584,9 @@ function initThemeToggle() {
     // Append theme toggle to body (will be positioned fixed at bottom left via CSS)
     document.body.appendChild(themeToggle);
     
-    // Initialize snowflakes if light theme
+    // Initialize seasonal particles if light theme
     if (savedTheme === 'light') {
-        initSnowflakes();
+        initSeasonalParticles();
     }
     
     // Toggle theme on click
@@ -593,12 +600,15 @@ function initThemeToggle() {
         // Update icon
         themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
         
-        // Toggle snowflakes and stars
+        // Toggle particles and stars
         if (newTheme === 'light') {
-            initSnowflakes();
+            const season = getCurrentSeason();
+            document.documentElement.setAttribute('data-season', season);
+            initSeasonalParticles();
             hideStars();
         } else {
-            removeSnowflakes();
+            document.documentElement.removeAttribute('data-season');
+            removeParticles();
             showStars();
         }
     });
@@ -610,91 +620,183 @@ function initThemeToggle() {
 }
 
 // ===========================
-// Snowflake Effect (Winter Theme)
+// Seasonal Particle Effects
 // ===========================
 
-let snowflakeInterval = null;
-const snowflakes = [];
-const snowflakeTimeouts = [];
+let particleInterval = null;
+const particles = [];
+const particleTimeouts = [];
+let isPaused = false;
 
-function initSnowflakes() {
-    // Don't create snowflakes if reduced motion is preferred
+// Detect current season based on month (Northern Hemisphere)
+function getCurrentSeason() {
+    const month = new Date().getMonth(); // 0-11
+    if (month >= 2 && month <= 4) return 'spring'; // March, April, May
+    if (month >= 5 && month <= 7) return 'summer'; // June, July, August
+    if (month >= 8 && month <= 10) return 'fall';   // September, October, November
+    return 'winter'; // December, January, February
+}
+
+// Check if device is mobile
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+        || window.innerWidth < 768;
+}
+
+// Get particle configuration based on season
+function getParticleConfig(season) {
+    const isMobile = isMobileDevice();
+    const baseInterval = isMobile ? 800 : 300; // Reduce frequency on mobile
+    
+    const configs = {
+        winter: {
+            emoji: '❄',
+            className: 'particle-winter',
+            color: '#38bdf8',
+            interval: baseInterval,
+            drift: [-50, 100]
+        },
+        spring: {
+            emoji: '🌸',
+            className: 'particle-spring',
+            color: '#ec4899',
+            interval: baseInterval,
+            drift: [-30, 60]
+        },
+        summer: {
+            emoji: '🍃',
+            className: 'particle-summer',
+            color: '#22c55e',
+            interval: baseInterval,
+            drift: [-40, 80]
+        },
+        fall: {
+            emoji: '🍂',
+            className: 'particle-fall',
+            color: '#f97316',
+            interval: baseInterval,
+            drift: [-60, 120]
+        }
+    };
+    
+    return configs[season];
+}
+
+function initSeasonalParticles() {
+    // Don't create particles if reduced motion is preferred
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return;
     }
     
-    // Clear existing snowflakes first
-    removeSnowflakes();
+    // Clear existing particles first
+    removeParticles();
     
-    // Create snowflakes periodically
-    snowflakeInterval = setInterval(() => {
-        createSnowflake();
-    }, 300); // Create a new snowflake every 300ms
+    const season = getCurrentSeason();
+    const config = getParticleConfig(season);
+    
+    // Create particles periodically
+    particleInterval = setInterval(() => {
+        if (!isPaused) {
+            createParticle(config);
+        }
+    }, config.interval);
 }
 
-function createSnowflake() {
-    const snowflake = document.createElement('div');
-    snowflake.className = 'snowflake';
-    snowflake.textContent = '❄';
+function createParticle(config) {
+    const particle = document.createElement('div');
+    particle.className = `seasonal-particle ${config.className}`;
+    particle.textContent = config.emoji;
     
     // Random horizontal position
     const startPosition = Math.random() * window.innerWidth;
-    snowflake.style.left = startPosition + 'px';
+    particle.style.left = startPosition + 'px';
     
     // Random size
     const size = 0.5 + Math.random() * 1;
-    snowflake.style.fontSize = size + 'em';
+    particle.style.fontSize = size + 'em';
     
-    // Random horizontal drift (to simulate wind)
-    const drift = -50 + Math.random() * 100; // -50px to 50px drift
-    snowflake.style.setProperty('--drift', drift + 'px');
+    // Random horizontal drift
+    const [minDrift, maxDrift] = config.drift;
+    const drift = minDrift + Math.random() * (maxDrift - minDrift);
+    particle.style.setProperty('--drift', drift + 'px');
     
     // Random duration (5-10 seconds)
     const duration = 5 + Math.random() * 5;
-    snowflake.style.animationDuration = duration + 's';
+    particle.style.animationDuration = duration + 's';
     
     // Random delay for staggered effect
     const delay = Math.random() * 2;
-    snowflake.style.animationDelay = delay + 's';
+    particle.style.animationDelay = delay + 's';
     
-    document.body.appendChild(snowflake);
-    snowflakes.push(snowflake);
+    // Set particle color
+    particle.style.color = config.color;
     
-    // Remove snowflake after animation completes
+    document.body.appendChild(particle);
+    particles.push(particle);
+    
+    // Remove particle after animation completes
     const timeoutId = setTimeout(() => {
-        if (snowflake.parentElement) {
-            snowflake.remove();
-            const index = snowflakes.indexOf(snowflake);
+        if (particle.parentElement) {
+            particle.remove();
+            const index = particles.indexOf(particle);
             if (index > -1) {
-                snowflakes.splice(index, 1);
+                particles.splice(index, 1);
             }
         }
     }, (duration + delay) * 1000);
     
-    snowflakeTimeouts.push(timeoutId);
+    particleTimeouts.push(timeoutId);
 }
 
-function removeSnowflakes() {
+function removeParticles() {
     // Clear the interval
-    if (snowflakeInterval) {
-        clearInterval(snowflakeInterval);
-        snowflakeInterval = null;
+    if (particleInterval) {
+        clearInterval(particleInterval);
+        particleInterval = null;
     }
     
     // Clear all pending timeouts
-    snowflakeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
-    snowflakeTimeouts.length = 0;
+    particleTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+    particleTimeouts.length = 0;
     
-    // Remove all existing snowflakes
-    snowflakes.forEach(snowflake => {
-        if (snowflake.parentElement) {
-            snowflake.remove();
+    // Remove all existing particles
+    particles.forEach(particle => {
+        if (particle.parentElement) {
+            particle.remove();
         }
     });
-    snowflakes.length = 0;
+    particles.length = 0;
     
-    // Also remove any orphaned snowflakes
-    document.querySelectorAll('.snowflake').forEach(el => el.remove());
+    // Also remove any orphaned particles
+    document.querySelectorAll('.seasonal-particle').forEach(el => el.remove());
+}
+
+// Pause/resume particles when tab visibility changes
+function initParticleVisibilityControl() {
+    document.addEventListener('visibilitychange', () => {
+        isPaused = document.hidden;
+        
+        if (document.hidden) {
+            // Pause animations by adding a class
+            particles.forEach(particle => {
+                particle.style.animationPlayState = 'paused';
+            });
+        } else {
+            // Resume animations
+            particles.forEach(particle => {
+                particle.style.animationPlayState = 'running';
+            });
+        }
+    });
+}
+
+// Legacy function names for backwards compatibility
+function initSnowflakes() {
+    initSeasonalParticles();
+}
+
+function removeSnowflakes() {
+    removeParticles();
 }
 
 // ===========================
