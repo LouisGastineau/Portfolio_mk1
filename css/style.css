@@ -17,7 +17,7 @@
     --gradient-overlay: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
 }
 
-/* Light theme (winter - default) */
+/* Light theme (winter) */
 [data-theme="light"] {
     --primary-color: #4338ca;
     --secondary-color: #6d28d9;
@@ -29,36 +29,6 @@
     --glass-bg: rgba(255, 255, 255, 0.8);
     --glass-border: rgba(100, 116, 139, 0.3);
     --gradient-overlay: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.1) 0%, transparent 50%);
-}
-
-/* Spring theme (pink) */
-[data-theme="light"][data-season="spring"] {
-    --primary-color: #ec4899;
-    --secondary-color: #f472b6;
-    --accent-color: #db2777;
-    --dark-bg: #fce7f3;
-    --darker-bg: #fdf2f8;
-    --gradient-overlay: radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
-}
-
-/* Summer theme (light blue with green accents) */
-[data-theme="light"][data-season="summer"] {
-    --primary-color: #0ea5e9;
-    --secondary-color: #22c55e;
-    --accent-color: #06b6d4;
-    --dark-bg: #cffafe;
-    --darker-bg: #ecfeff;
-    --gradient-overlay: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%);
-}
-
-/* Fall theme (brownish/orange) */
-[data-theme="light"][data-season="fall"] {
-    --primary-color: #ea580c;
-    --secondary-color: #f97316;
-    --accent-color: #c2410c;
-    --dark-bg: #fed7aa;
-    --darker-bg: #ffedd5;
-    --gradient-overlay: radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
 }
 
 * {
@@ -253,35 +223,7 @@ nav {
     transform: rotate(20deg) scale(1.1);
 }
 
-/* Seasonal particle effects */
-.seasonal-particle {
-    position: fixed;
-    top: -10px;
-    font-size: 1em;
-    pointer-events: none;
-    z-index: 1;
-    user-select: none;
-    animation: fall linear infinite;
-    opacity: 0;
-}
-
-.particle-winter {
-    color: #38bdf8;
-}
-
-.particle-spring {
-    color: #ec4899;
-}
-
-.particle-summer {
-    color: #22c55e;
-}
-
-.particle-fall {
-    color: #f97316;
-}
-
-/* Legacy support for .snowflake class */
+/* Snowflake effect */
 .snowflake {
     position: fixed;
     top: -10px;
