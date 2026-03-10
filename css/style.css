@@ -552,6 +552,117 @@ main {
 }
 
 /* ===========================
+   Skills Section (Homepage)
+   =========================== */
+
+.skills-section {
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 0 4rem;
+}
+
+.skills-section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.skills-section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4))
+            drop-shadow(0 0 40px rgba(236, 72, 153, 0.3));
+}
+
+.skills-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* Skill pill tags inside .skills-section */
+.skills-section .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.skills-section .skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+    padding: 0.35rem 0.75rem;
+    border-radius: 2rem;
+    border: 1px solid var(--glass-border);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: left;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    cursor: default;
+}
+
+.skills-section .skill-tag:hover {
+    transform: translateY(-2px) scale(1.0);
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(139, 92, 246, 0.25));
+}
+
+.skill-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    fill: currentColor;
+    opacity: 0.85;
+}
+
+.skill-tag-emoji {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+/* Soft Skills card accent */
+.card-soft-skills {
+    border-color: rgba(236, 72, 153, 0.35);
+}
+
+.card-soft-skills .category-title {
+    color: var(--accent-color);
+}
+
+.skills-section .card-soft-skills .skill-tag {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
+}
+
+.skills-section .card-soft-skills .skill-tag:hover {
+    border-color: var(--accent-color);
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.22), rgba(139, 92, 246, 0.15));
+}
+
+/* Currently Exploring card accent */
+.card-exploring {
+    border-color: rgba(139, 92, 246, 0.35);
+}
+
+.card-exploring .category-title {
+    color: var(--secondary-color);
+}
+
+.skills-section .card-exploring .skill-tag {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+}
+
+.skills-section .card-exploring .skill-tag:hover {
+    border-color: var(--secondary-color);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(99, 102, 241, 0.15));
+}
+
+/* ===========================
    Glass Cards
    =========================== */
 
@@ -1480,6 +1591,15 @@ footer a:hover {
         font-size: 0.8rem;
     }
 
+    /* Skills section - tablet */
+    .skills-section {
+        padding: 0 2rem;
+    }
+
+    .skills-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     /* Alternating Sections - Mobile */
     .section-alternate {
         grid-template-columns: 1fr;
@@ -1548,6 +1668,15 @@ footer a:hover {
 
     .section-alternate {
         padding: 1.5rem;
+    }
+
+    /* Skills section - small mobile */
+    .skills-section {
+        padding: 0 1.5rem;
+    }
+
+    .skills-cards-grid {
+        grid-template-columns: 1fr;
     }
 
     .hero h1 {
