@@ -229,11 +229,11 @@ function applyHomeTranslations(home) {
 
         const categoryTitles = skillsSection.querySelectorAll('.category-title');
         if (categoryTitles.length >= 5) {
-            categoryTitles[0].textContent = home.skillsFrontend;
-            categoryTitles[1].textContent = home.skillsBackend;
-            categoryTitles[2].textContent = home.skillsTools;
-            categoryTitles[3].textContent = home.skillsSoftSkills;
-            categoryTitles[4].textContent = home.skillsExploring;
+            categoryTitles[0].textContent = home.skillsSoftSkills;
+            categoryTitles[1].textContent = home.skillsExploring;
+            categoryTitles[2].textContent = home.skillsFrontend;
+            categoryTitles[3].textContent = home.skillsBackend;
+            categoryTitles[4].textContent = home.skillsTools;
         }
 
         // Soft skill tags

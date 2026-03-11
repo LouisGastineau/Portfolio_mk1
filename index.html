@@ -137,67 +137,73 @@
             </div>
 
             <div class="skills-cards-grid">
-                <!-- Frontend Card -->
-                <div class="card">
-                    <h3 class="category-title">Frontend</h3>
-                    <div class="skills-tags">
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-html5"/></svg>HTML5</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-css3"/></svg>CSS3</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-javascript"/></svg>JavaScript</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-react"/></svg>React</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-vuejs"/></svg>Vue.js</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-typescript"/></svg>TypeScript</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-tailwind"/></svg>Tailwind CSS</span>
-                        <span class="skill-tag">📐 Responsive Design</span>
-                        <span class="skill-tag">✨ CSS Animation</span>
+                <!-- Left column: 2 specialty cards -->
+                <div class="skills-left">
+                    <!-- Soft Skills Card -->
+                    <div class="card card-soft-skills">
+                        <h3 class="category-title">Soft Skills</h3>
+                        <div class="skills-tags">
+                            <span class="skill-tag"><span class="skill-tag-emoji">👂</span><span data-i18n="skillsSoftTag1">Bon auditeur</span></span>
+                            <span class="skill-tag"><span class="skill-tag-emoji">🔍</span><span data-i18n="skillsSoftTag2">Curieux</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Currently Exploring Card -->
+                    <div class="card card-exploring">
+                        <h3 class="category-title">En cours d'exploration</h3>
+                        <div class="skills-tags">
+                            <span class="skill-tag"><span class="skill-tag-emoji">🧩</span><span data-i18n="skillsExploringTag1">POO</span></span>
+                            <span class="skill-tag"><span class="skill-tag-emoji">📊</span><span data-i18n="skillsExploringTag2">Algorithme procédural</span></span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Backend Card -->
-                <div class="card">
-                    <h3 class="category-title">Backend</h3>
-                    <div class="skills-tags">
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-nodejs"/></svg>Node.js</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-express"/></svg>Express</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-python"/></svg>Python</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-graphql"/></svg>GraphQL</span>
-                        <span class="skill-tag">🔌 REST API</span>
-                        <span class="skill-tag">🗄️ SQL &amp; NoSQL</span>
+                <!-- Right column: 3 tech cards -->
+                <div class="skills-right">
+                    <!-- Frontend Card -->
+                    <div class="card">
+                        <h3 class="category-title">Frontend</h3>
+                        <div class="skills-tags">
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-html5"/></svg>HTML5</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-css3"/></svg>CSS3</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-javascript"/></svg>JavaScript</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-react"/></svg>React</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-vuejs"/></svg>Vue.js</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-typescript"/></svg>TypeScript</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-tailwind"/></svg>Tailwind CSS</span>
+                            <span class="skill-tag">📐 Responsive Design</span>
+                            <span class="skill-tag">✨ CSS Animation</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Tools Card -->
-                <div class="card">
-                    <h3 class="category-title">Outils</h3>
-                    <div class="skills-tags">
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-git"/></svg>Git</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-github"/></svg>GitHub</span>
-                        <span class="skill-tag">💻 VS Code</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-docker"/></svg>Docker</span>
-                        <span class="skill-tag">⚙️ CI/CD</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-webpack"/></svg>Webpack</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-npm"/></svg>npm</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-yarn"/></svg>yarn</span>
-                        <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-phpstorm"/></svg>PhpStorm</span>
-                        <span class="skill-tag">🔍 Chrome DevTools</span>
+                    <!-- Backend Card -->
+                    <div class="card">
+                        <h3 class="category-title">Backend</h3>
+                        <div class="skills-tags">
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-nodejs"/></svg>Node.js</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-express"/></svg>Express</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-python"/></svg>Python</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-graphql"/></svg>GraphQL</span>
+                            <span class="skill-tag">🔌 REST API</span>
+                            <span class="skill-tag">🗄️ SQL &amp; NoSQL</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Soft Skills Card -->
-                <div class="card card-soft-skills">
-                    <h3 class="category-title">Soft Skills</h3>
-                    <div class="skills-tags">
-                        <span class="skill-tag"><span class="skill-tag-emoji">👂</span><span data-i18n="skillsSoftTag1">Bon auditeur</span></span>
-                        <span class="skill-tag"><span class="skill-tag-emoji">🔍</span><span data-i18n="skillsSoftTag2">Curieux</span></span>
-                    </div>
-                </div>
-
-                <!-- Currently Exploring Card -->
-                <div class="card card-exploring">
-                    <h3 class="category-title">En cours d'exploration</h3>
-                    <div class="skills-tags">
-                        <span class="skill-tag"><span class="skill-tag-emoji">🧩</span><span data-i18n="skillsExploringTag1">POO</span></span>
-                        <span class="skill-tag"><span class="skill-tag-emoji">📊</span><span data-i18n="skillsExploringTag2">Algorithme procédural</span></span>
+                    <!-- Tools Card -->
+                    <div class="card">
+                        <h3 class="category-title">Outils</h3>
+                        <div class="skills-tags">
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-git"/></svg>Git</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-github"/></svg>GitHub</span>
+                            <span class="skill-tag">💻 VS Code</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-docker"/></svg>Docker</span>
+                            <span class="skill-tag">⚙️ CI/CD</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-webpack"/></svg>Webpack</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-npm"/></svg>npm</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-yarn"/></svg>yarn</span>
+                            <span class="skill-tag"><svg class="skill-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-phpstorm"/></svg>PhpStorm</span>
+                            <span class="skill-tag">🔍 Chrome DevTools</span>
+                        </div>
                     </div>
                 </div>
             </div>
