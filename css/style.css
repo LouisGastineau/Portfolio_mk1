@@ -591,6 +591,10 @@ main {
     gap: 1.5rem;
 }
 
+.skills-left {
+    padding-top: 3rem;
+}
+
 /* Skill pill tags inside .skills-section */
 .skills-section .skills-tags {
     display: flex;
@@ -1608,7 +1612,9 @@ footer a:hover {
         grid-template-columns: 1fr;
     }
 
-    /* Alternating Sections - Mobile */
+    .skills-left {
+        padding-top: 0;
+    }
     .section-alternate {
         grid-template-columns: 1fr;
         gap: 2rem;
