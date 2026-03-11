@@ -581,7 +581,7 @@ main {
     display: grid;
     grid-template-columns: 2fr 3fr;
     gap: 1.5rem;
-    align-items: start;
+    align-items: center;
 }
 
 .skills-left,
@@ -589,10 +589,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-}
-
-.skills-left {
-    padding-top: 3rem;
 }
 
 /* Skill pill tags inside .skills-section */
@@ -1612,9 +1608,6 @@ footer a:hover {
         grid-template-columns: 1fr;
     }
 
-    .skills-left {
-        padding-top: 0;
-    }
     .section-alternate {
         grid-template-columns: 1fr;
         gap: 2rem;
