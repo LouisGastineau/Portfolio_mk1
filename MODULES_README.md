@@ -100,18 +100,17 @@ Pour séparer visuellement les sections.
 
 ```html
 <div class="module module-separator">
-    <div class="separator-icon">✦</div>
+    <div class="separator-icon"><i class="fa-solid fa-star"></i></div>
     <div class="separator-line"></div>
 </div>
 ```
 
-**Options d'icônes:**
-- ✦ (étoile)
-- ♪ (note de musique)
-- ✈ (avion)
-- 💪 (muscle)
-- ❤️ (coeur)
-- 🌟 (étoile brillante)
+**Options d'icônes (FontAwesome) :**
+- `<i class="fa-solid fa-star"></i>` (étoile)
+- `<i class="fa-solid fa-music"></i>` (note de musique)
+- `<i class="fa-solid fa-plane"></i>` (avion)
+- `<i class="fa-solid fa-heart"></i>` (coeur)
+- `<i class="fa-solid fa-gamepad"></i>` (manette)
 
 ### 5. Module Citation (`.module-quote`)
 Pour afficher des citations inspirantes.
@@ -162,7 +161,7 @@ Copiez `hobbies/jeux-video.html` et renommez-le (ex: `musique.html`)
 ```html
 <a href="hobbies/nom-hobby.html" style="text-decoration: none;">
     <div class="card" style="cursor: pointer;">
-        <h2>🎯 Votre Hobby</h2>
+        <h2><i class="fa-solid fa-bullseye"></i> Votre Hobby</h2>
         <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1rem;">
             Description courte...
         </p>
@@ -210,14 +209,14 @@ Copiez `hobbies/jeux-video.html` et renommez-le (ex: `musique.html`)
 
 ## Compatibilité
 
-- ✅ HTML5 Vanilla (pas de framework)
-- ✅ CSS3 avec variables
-- ✅ JavaScript minimal (navigation, effets)
-- ✅ GitHub Pages compatible
-- ✅ Pas de build nécessaire
-- ✅ Responsive par défaut
-- ✅ Lazy loading intégré
-- ✅ Accessibilité (prefers-reduced-motion)
+- HTML5 Vanilla (pas de framework)
+- CSS3 avec variables
+- JavaScript minimal (navigation, effets)
+- GitHub Pages compatible
+- Pas de build nécessaire
+- Responsive par défaut
+- Lazy loading intégré
+- Accessibilité (prefers-reduced-motion)
 
 ## Exemples Complets
 

@@ -1,0 +1,17 @@
+127.0.0.1 - - [11/Mar/2026 15:49:39] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:49:39] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:49:39] "GET /js/translations.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:49:39] "GET /js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:20] "GET /hobbies.html HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:20] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:20] "GET /js/translations.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:20] "GET /js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:34] "GET /contact.html HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:34] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:34] "GET /js/translations.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:34] "GET /js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:45] "GET /hobbies/jeux-video.html HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:45] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:45] "GET /css/modules.css HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:45] "GET /js/translations.js HTTP/1.1" 200 -
+127.0.0.1 - - [11/Mar/2026 15:50:45] "GET /js/main.js HTTP/1.1" 200 -

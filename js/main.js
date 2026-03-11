@@ -209,7 +209,7 @@ function applyHomeTranslations(home) {
     const valuesTitle = document.querySelector('#about h3');
     if (valuesTitle) valuesTitle.textContent = home.valuesTitle;
     
-    const valuesList = document.querySelectorAll('#about .feature-list li');
+    const valuesList = document.querySelectorAll('#about .feature-list li span[data-i18n]');
     if (valuesList.length >= 5) {
         valuesList[0].textContent = home.valuesInnovation;
         valuesList[1].textContent = home.valuesExcellence;
@@ -514,7 +514,11 @@ function applyHobbiesTranslations(hobbies) {
         hobbyCards.forEach((card, index) => {
             const title = card.querySelector('h2');
             const desc = card.querySelector('.text-description');
-            if (title && index < titles.length) title.textContent = titles[index];
+            if (title && index < titles.length) {
+                const titleSpan = title.querySelector('span[data-i18n]');
+                if (titleSpan) titleSpan.textContent = titles[index];
+                else title.textContent = titles[index];
+            }
             if (desc && index < descs.length) desc.textContent = descs[index];
         });
     }
@@ -571,7 +575,7 @@ function initThemeToggle() {
     
     const themeIcon = document.createElement('span');
     themeIcon.className = 'theme-icon';
-    themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+    themeIcon.innerHTML = savedTheme === 'dark' ? '<i class="fa-solid fa-moon" aria-hidden="true"></i>' : '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
     
     themeToggle.appendChild(themeIcon);
     
@@ -592,7 +596,7 @@ function initThemeToggle() {
         localStorage.setItem('theme', newTheme);
         
         // Update icon
-        themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        themeIcon.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon" aria-hidden="true"></i>' : '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
         
         // Toggle snowflakes and stars
         if (newTheme === 'light') {
@@ -636,7 +640,7 @@ function initSnowflakes() {
 function createSnowflake() {
     const snowflake = document.createElement('div');
     snowflake.className = 'snowflake';
-    snowflake.textContent = '❄';
+    snowflake.innerHTML = '<i class="fa-solid fa-snowflake" aria-hidden="true"></i>';
     
     // Random horizontal position
     const startPosition = Math.random() * window.innerWidth;
