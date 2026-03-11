@@ -219,28 +219,29 @@ function applyHomeTranslations(home) {
     }
     
     // Skills section
-    const skillsTitle = document.querySelector('.section-alternate.right h2');
-    if (skillsTitle) skillsTitle.textContent = home.skillsTitle;
-    
-    const skillsSubtitle = document.querySelector('.section-alternate.right .section-subtitle');
-    if (skillsSubtitle) skillsSubtitle.textContent = home.skillsSubtitle;
-    
-    const categoryTitles = document.querySelectorAll('.category-title');
-    if (categoryTitles.length >= 3) {
-        categoryTitles[0].textContent = home.skillsFrontend;
-        categoryTitles[1].textContent = home.skillsBackend;
-        categoryTitles[2].textContent = home.skillsTools;
-    }
-    
-    // Target skill section descriptions specifically
-    const skillSection = document.querySelector('.section-alternate.right');
-    if (skillSection) {
-        const skillDescs = skillSection.querySelectorAll('.text-description');
-        if (skillDescs.length >= 3) {
-            skillDescs[0].textContent = home.skillsFrontendDesc;
-            skillDescs[1].textContent = home.skillsBackendDesc;
-            skillDescs[2].textContent = home.skillsToolsDesc;
+    const skillsSection = document.querySelector('#skills');
+    if (skillsSection) {
+        const skillsTitle = skillsSection.querySelector('.skills-section-header h2');
+        if (skillsTitle) skillsTitle.textContent = home.skillsTitle;
+
+        const skillsSubtitle = skillsSection.querySelector('.section-subtitle');
+        if (skillsSubtitle) skillsSubtitle.textContent = home.skillsSubtitle;
+
+        const categoryTitles = skillsSection.querySelectorAll('.category-title');
+        if (categoryTitles.length >= 5) {
+            categoryTitles[0].textContent = home.skillsSoftSkills;
+            categoryTitles[1].textContent = home.skillsExploring;
+            categoryTitles[2].textContent = home.skillsFrontend;
+            categoryTitles[3].textContent = home.skillsBackend;
+            categoryTitles[4].textContent = home.skillsTools;
         }
+
+        // Soft skill tags
+        const softTags = skillsSection.querySelectorAll('[data-i18n="skillsSoftTag1"], [data-i18n="skillsSoftTag2"], [data-i18n="skillsExploringTag1"], [data-i18n="skillsExploringTag2"]');
+        softTags.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (home[key] !== undefined) el.textContent = home[key];
+        });
     }
     
     // CTA section
