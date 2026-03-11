@@ -2,7 +2,7 @@
 
 Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScript vanilla. (Oui, ce README a été généré par une IA.)
 
-## 📸 Captures d'écran
+## Screenshots
 
 ### Page d'accueil
 ![Homepage](https://github.com/user-attachments/assets/2d98dc58-545e-4576-b9eb-1e2d063a3bab)
@@ -16,7 +16,7 @@ Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScrip
 ### Page Contact
 ![Contact Page](https://github.com/user-attachments/assets/795f9ca9-2121-4f89-b727-ce080650413d)
 
-## 🎨 Caractéristiques
+## Caractéristiques
 
 - **Design moderne** : Thème sombre avec dégradés élégants
 - **Glassmorphism** : Cartes avec effet de verre dépoli
@@ -30,7 +30,7 @@ Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScrip
 - **Effets saisonniers** : Flocons de neige animés en mode clair
 - **Étoiles volantes** : Animation d'étoiles en arrière-plan en mode sombre
 
-## 📄 Pages
+## Pages
 
 1. **index.html** - Page d'accueil avec présentation
 2. **cv.html** - CV détaillé avec expériences et compétences
@@ -44,7 +44,7 @@ Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScrip
 - **hobbies/escalade.html** - Aventures et ascensions
 - **hobbies/jeux-societe.html** - Ludothèque et reviews
 
-## 🚀 Utilisation
+## Utilisation
 
 ### Visualisation locale
 
@@ -56,7 +56,7 @@ Ouvrez simplement le fichier `index.html` dans votre navigateur web.
 2. Sélectionnez la branche principale comme source
 3. Votre site sera disponible à l'adresse : `https://[username].github.io/Portfolio_mk1/`
 
-## 🛠️ Technologies utilisées
+## Technologies utilisées
 
 - **HTML5** - Structure sémantique et accessible
 - **CSS3** - Styles avancés avec animations et glassmorphism
@@ -74,7 +74,7 @@ Ouvrez simplement le fichier `index.html` dans votre navigateur web.
 - **Google Fonts (Inter)** - Typographie moderne et lisible
 - **YouTube API** - Intégration de vidéos avec lazy loading
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```
 Portfolio_mk1/
@@ -99,7 +99,7 @@ Portfolio_mk1/
 └── MODULES_README.md   # Documentation du système modulaire hobbies
 ```
 
-## ✨ Fonctionnalités principales
+## Fonctionnalités principales
 
 ### Interface utilisateur
 - Navigation responsive avec menu hamburger animé
@@ -156,7 +156,7 @@ Portfolio_mk1/
 - Activable en cliquant sur le point dans le footer
 - Sauvegarde de l'état dans localStorage
 
-## 📝 Personnalisation
+## Personnalisation
 
 Pour personnaliser le portfolio :
 
@@ -168,7 +168,7 @@ Pour personnaliser le portfolio :
 6. **Nouveau hobby** : Créez une nouvelle page en suivant le guide dans `MODULES_README.md`
 7. **Thème** : Modifiez les couleurs pour les modes dark et light dans `style.css`
 
-## 🎨 Variables CSS personnalisables
+## Variables CSS personnalisables
 
 ```css
 :root {
@@ -187,29 +187,29 @@ Pour personnaliser le portfolio :
 }
 ```
 
-## 🌐 Fonctionnalités internationales
+## Fonctionnalités internationales
 
 Le site supporte actuellement :
-- 🇫🇷 Français (par défaut)
-- 🇬🇧 Anglais
+- FR Français (par défaut)
+- EN Anglais
 
 Pour ajouter une nouvelle langue :
 1. Ajoutez les traductions dans `js/translations.js`
 2. Créez les fonctions d'application dans `main.js`
 3. Ajoutez le bouton de langue dans la navigation
 
-## 📱 Compatible
+## Compatible
 
-- ✅ Chrome / Chromium
-- ✅ Firefox
-- ✅ Safari
-- ✅ Edge
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
-- ✅ Tablettes
-- ✅ Support des modes sombre et clair
-- ✅ Support de `prefers-reduced-motion` pour l'accessibilité
+- Chrome / Chromium
+- Firefox
+- Safari
+- Edge
+- Mobile browsers (iOS Safari, Chrome Mobile)
+- Tablettes
+- Support des modes sombre et clair
+- Support de `prefers-reduced-motion` pour l'accessibilité
 
-## 🎯 Fonctionnalités accessibles
+## Fonctionnalités accessibles
 
 - Navigation au clavier complète
 - Support du lecteur d'écran
@@ -219,7 +219,7 @@ Pour ajouter une nouvelle langue :
 - Images avec texte alternatif descriptif
 - Formulaires avec labels appropriés
 
-## 🚀 Performance
+## Performance
 
 - Lazy loading des images et vidéos
 - Animations optimisées avec `requestAnimationFrame`
@@ -228,10 +228,10 @@ Pour ajouter une nouvelle langue :
 - Mise en pause des animations quand la page n'est pas visible
 - Gestion optimisée de la mémoire pour les effets visuels
 
-## 📄 Licence
+## Licence
 
 Ce projet est libre de droits pour un usage personnel.
 
 ---
 
-Créé avec ❤️ et du code propre
+Créé avec passion et du code propre
