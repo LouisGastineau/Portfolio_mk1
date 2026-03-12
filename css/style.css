@@ -644,9 +644,19 @@ main {
     line-height: 1;
 }
 
-/* FontAwesome icons: pink/blue gradient for icons without a specific brand color */
-.skill-tag-emoji i {
+/* FontAwesome icons: pink/blue gradient */
+.fa-solid,
+.fa-brands,
+.fa-regular {
     background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Pink gradient for the heart icon */
+.fa-heart {
+    background: linear-gradient(135deg, #f9a8d4, #ec4899);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
