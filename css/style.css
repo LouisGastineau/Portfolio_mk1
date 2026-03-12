@@ -15,6 +15,11 @@
     --glass-bg: rgba(15, 23, 42, 0.6);
     --glass-border: rgba(255, 255, 255, 0.1);
     --gradient-overlay: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+
+    /* Skill icon brand colors (theme-aware) */
+    --icon-github-color: #e6edf3;
+    --icon-express-color: #aaaaaa;
+    --icon-webpack-color: #8DD6F9;
 }
 
 /* Light theme (winter) */
@@ -29,6 +34,11 @@
     --glass-bg: rgba(255, 255, 255, 0.8);
     --glass-border: rgba(100, 116, 139, 0.3);
     --gradient-overlay: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.1) 0%, transparent 50%);
+
+    /* Skill icon brand colors (light theme overrides) */
+    --icon-github-color: #24292e;
+    --icon-express-color: #555555;
+    --icon-webpack-color: #1c78c0;
 }
 
 * {
@@ -633,6 +643,34 @@ main {
     font-size: 0.9rem;
     line-height: 1;
 }
+
+/* FontAwesome icons: pink/blue gradient for icons without a specific brand color */
+.skill-tag-emoji i {
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* SVG brand icon colors */
+.skill-icon:has(use[href="#icon-html5"])       { color: #E34F26; }
+.skill-icon:has(use[href="#icon-css3"])        { color: #1572B6; }
+.skill-icon:has(use[href="#icon-javascript"])  { color: #F7DF1E; }
+.skill-icon:has(use[href="#icon-typescript"])  { color: #3178C6; }
+.skill-icon:has(use[href="#icon-react"])       { color: #61DAFB; }
+.skill-icon:has(use[href="#icon-vuejs"])       { color: #4FC08D; }
+.skill-icon:has(use[href="#icon-tailwind"])    { color: #06B6D4; }
+.skill-icon:has(use[href="#icon-nodejs"])      { color: #339933; }
+.skill-icon:has(use[href="#icon-express"])     { color: var(--icon-express-color); }
+.skill-icon:has(use[href="#icon-python"])      { color: #3776AB; }
+.skill-icon:has(use[href="#icon-graphql"])     { color: #E10098; }
+.skill-icon:has(use[href="#icon-git"])         { color: #F05032; }
+.skill-icon:has(use[href="#icon-github"])      { color: var(--icon-github-color); }
+.skill-icon:has(use[href="#icon-docker"])      { color: #2496ED; }
+.skill-icon:has(use[href="#icon-webpack"])     { color: var(--icon-webpack-color); }
+.skill-icon:has(use[href="#icon-npm"])         { color: #CB3837; }
+.skill-icon:has(use[href="#icon-yarn"])        { color: #2C8EBB; }
+.skill-icon:has(use[href="#icon-phpstorm"])    { color: #9C27B0; }
 
 /* Soft Skills card accent */
 .card-soft-skills {
