@@ -1,5 +1,6 @@
 # Portfolio_mk1
 
+Oui ce Readme a été principalement ecrit par une ia 
 Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScript vanilla.
 
 ## Démarrage rapide
@@ -67,7 +68,6 @@ Portfolio_mk1/
 | **Bilingue** | Français / Anglais (auto-détection navigateur) |
 | **Animations** | Étoiles (dark), flocons de neige (light), effets hover |
 | **Effet curseur** | Lumière douce qui suit la souris |
-| **Easter egg** | Mode UwU (clic sur le point du footer) |
 | **Accessibilité** | ARIA, `prefers-reduced-motion`, contraste WCAG |
 | **Performance** | Lazy loading, `requestAnimationFrame`, zéro dépendance |
 
