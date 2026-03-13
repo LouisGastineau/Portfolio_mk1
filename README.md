@@ -1,6 +1,7 @@
 # Portfolio_mk1
 
-Oui ce Readme a été principalement ecrit par une ia 
+Oui ce Readme a été principalement ecrit par une ia
+
 Portfolio personnel / CV statique multi-pages créé avec HTML, CSS et JavaScript vanilla.
 
 ## Démarrage rapide
