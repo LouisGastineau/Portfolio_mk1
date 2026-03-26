@@ -21,6 +21,13 @@
     transition: all 0.3s ease;
 }
 
+.module-text:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2),
+                0 0 30px rgba(99, 102, 241, 0.1);
+}
+
 .module-text h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
@@ -241,6 +248,13 @@
     padding: 2rem 2.5rem;
     margin: 3rem 0;
     font-style: italic;
+    transition: all 0.3s ease;
+}
+
+.module-quote:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2),
+                0 0 30px rgba(99, 102, 241, 0.1);
 }
 
 .module-quote p {
