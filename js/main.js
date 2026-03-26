@@ -237,7 +237,7 @@ function applyHomeTranslations(home) {
         }
 
         // Soft skill tags
-        const softTags = skillsSection.querySelectorAll('[data-i18n="skillsSoftTag1"], [data-i18n="skillsSoftTag2"], [data-i18n="skillsExploringTag1"], [data-i18n="skillsExploringTag2"]');
+        const softTags = skillsSection.querySelectorAll('[data-i18n="skillsSoftTag1"], [data-i18n="skillsSoftTag2"], [data-i18n="skillsSoftTag3"], [data-i18n="skillsSoftTag4"], [data-i18n="skillsSoftTag5"], [data-i18n="skillsExploringTag1"], [data-i18n="skillsExploringTag2"]');
         softTags.forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (home[key] !== undefined) el.textContent = home[key];
