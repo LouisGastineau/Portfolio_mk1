@@ -710,6 +710,11 @@ function removeSnowflakes() {
 // ===========================
 
 function initMouseLight() {
+    // Don't create mouse light if reduced motion is preferred
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
     // Create mouse light element
     const mouseLight = document.createElement('div');
     mouseLight.id = 'mouse-light';
@@ -994,6 +999,8 @@ function showNotification(message, type = 'success') {
         default:
             backgroundColor = 'linear-gradient(135deg, #6366f1, #8b5cf6)';
     }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     notification.style.cssText = `
         position: fixed;
@@ -1005,7 +1012,7 @@ function showNotification(message, type = 'success') {
         border-radius: 0.5rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         z-index: 10000;
-        animation: slideIn 0.3s ease;
+        ${prefersReducedMotion ? '' : 'animation: slideIn 0.3s ease forwards;'}
     `;
     
     // Add to document
@@ -1013,8 +1020,12 @@ function showNotification(message, type = 'success') {
     
     // Remove after 3 seconds
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
+        if (prefersReducedMotion) {
+            notification.remove();
+        } else {
+            notification.style.animation = 'slideOut 0.3s ease forwards';
+            setTimeout(() => notification.remove(), 300);
+        }
     }, 3000);
 }
 
@@ -1052,6 +1063,11 @@ function initSmoothScroll() {
 // ===========================
 
 function initScrollAnimations() {
+    // Skip animations if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
     // Intersection Observer for scroll animations
     const observerOptions = {
         threshold: 0.1,
