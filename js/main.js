@@ -567,38 +567,46 @@ function initThemeToggle() {
     // Get saved theme from localStorage or default to 'dark'
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
-    
-    // Create theme toggle button
-    const themeToggle = document.createElement('button');
-    themeToggle.className = 'theme-toggle';
-    themeToggle.setAttribute('aria-label', 'Toggle theme');
-    
+
+    // Build the toggle label wrapper
+    const themeLabel = document.createElement('label');
+    themeLabel.className = 'theme';
+
+    // Checkbox: checked = dark mode, unchecked = light mode
+    const themeCheckbox = document.createElement('input');
+    themeCheckbox.className = 'theme__toggle';
+    themeCheckbox.type = 'checkbox';
+    themeCheckbox.setAttribute('role', 'switch');
+    themeCheckbox.setAttribute('aria-label', 'Toggle theme');
+    themeCheckbox.id = 'theme-toggle';
+    themeCheckbox.checked = savedTheme === 'dark';
+
+    // Icon with 9 parts (1 circle + 8 rays, pure CSS sun/moon animation)
     const themeIcon = document.createElement('span');
-    themeIcon.className = 'theme-icon';
-    themeIcon.innerHTML = savedTheme === 'dark' ? '<i class="fa-solid fa-moon" aria-hidden="true"></i>' : '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
-    
-    themeToggle.appendChild(themeIcon);
-    
-    // Append theme toggle to body (will be positioned fixed at bottom left via CSS)
-    document.body.appendChild(themeToggle);
-    
-    // Initialize snowflakes if light theme
+    themeIcon.className = 'theme__icon';
+    for (let i = 0; i < 9; i++) {
+        const part = document.createElement('span');
+        part.className = 'theme__icon-part';
+        themeIcon.appendChild(part);
+    }
+
+    themeLabel.appendChild(themeCheckbox);
+    themeLabel.appendChild(themeIcon);
+    document.body.appendChild(themeLabel);
+
+    // Initialize effects based on saved theme
     if (savedTheme === 'light') {
         initSnowflakes();
+        hideStars();
     }
-    
-    // Toggle theme on click
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
+    // Toggle theme on checkbox change
+    themeCheckbox.addEventListener('change', () => {
+        const newTheme = themeCheckbox.checked ? 'dark' : 'light';
+
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        
-        // Update icon
-        themeIcon.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon" aria-hidden="true"></i>' : '<i class="fa-solid fa-sun" aria-hidden="true"></i>';
-        
-        // Toggle snowflakes and stars
+
         if (newTheme === 'light') {
             initSnowflakes();
             hideStars();
@@ -607,11 +615,6 @@ function initThemeToggle() {
             showStars();
         }
     });
-    
-    // Hide or show stars based on initial theme
-    if (savedTheme === 'light') {
-        hideStars();
-    }
 }
 
 // ===========================
